@@ -1,0 +1,86 @@
+.checked {
+    color: orange;
+    }
+    .container{
+        width:100%;
+        margin-top: 15%;
+
+        font-family: sans-serif;
+        letter-spacing: 1px;
+    }
+    .container h2{
+        border-left: 6px solid gray ;
+        background-color: lightgrey;
+        font-family: 'Pacifico', cursive;
+        background: #b69b7d;
+        color:white;
+        width: 230px;;
+        font-size: 38px;
+        padding: 0px;
+        height: 50px;
+    }
+    .container h2::after{
+        
+        content: ' ';
+        border-top:47px solid #b69b7d  ;
+        border-right: 55px solid transparent;
+        position: relative;
+        left: 28.0px;
+        top: 58px;
+
+    }
+    .row{
+        margin-top: 30px;
+
+    }
+    img{
+        width: 100%;
+    }
+    .product-bottom .fa{
+        color: rebeccapurple;
+        font-size: 10px;
+    }
+    .product-bottom h3{
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .product-bottom h5{
+        font-size: 15px;
+        padding-bottom: 10px;
+    }
+    .overlay{
+        display: block;
+        opacity: 0;
+        position: absolute;
+        top:10%;
+        margin-left: 0;
+        width: 70px;
+    }
+    .product-top:hover .overlay{
+        opacity: 1;
+        margin-left: 5%;
+        transition: 0.5s;
+    }
+    .overlay .fa{
+        cursor: pointer;
+        background-color: #fff;
+        color: #000 ;
+        height: 35px;
+        width: 35px;
+        font-size: 20px;
+        padding: 7px;
+        margin: 5%;
+        margin-bottom: 5%;
+    }
+    .overlay .btn-secondary{
+        background: transparent !important;
+        border: none !important;
+    }
+    h3{
+        font-size: 20px;
+    }
+
+    span{
+        color: blue;
+
+    }

@@ -1,0 +1,115 @@
+// Product.create(n_product , function(err,product){
+                //     if(err){
+                //         console.log(err);
+                //     }
+                //     else{
+                //         console.log(product);
+                //         Category.findOne({categoryName: n_category}, function(err,foundCategory){
+                //             if(err){
+                //                 console.log(err);
+                //             }
+                //             else{
+                //                 foundCategory.productID.push(product);
+                //                 // console.log(foundCategory);
+                //                 Product.findOne({ProductName: n_name}, function(err,foundProduct){
+                //                     if(err){
+                //                         console.log(err);
+                //                     }
+                //                     else{
+                                        
+                //                         foundProduct.categories.push(foundCategory);
+                //                         foundProduct.save(function(err,data){
+                //                             if(err){
+                //                                 console.log(err);
+                //                             }
+                //                             else{
+                                                
+                //                                 // console.log(data);
+                //                                 Color.findOne({colorName: n_color}, function(err,foundColor){
+                //                                     if(err){
+                //                                         console.log(err);
+                //                                     }
+                //                                     else{
+                //                                         // console.log(foundColor);
+                //                                         Size.findOne({sizeName: n_size}, (err,foundSize) => {
+                //                                             if(err){
+                //                                                 console.log(err);
+                                
+                //                                             }
+                //                                             else{
+                //                                                  Product.findOne({ProductName: n_name}, function(err,newProduct){
+                //                                                      if(err){
+                //                                                          console.log(err);
+                //                                                      }
+                //                                                      else{
+                                                                         
+                //                                                         newProduct.size.push(foundSize);
+                //                                                         newProduct.color.push(foundColor);
+                //                                                         newProduct.save(function(err,good){
+                //                                                             console.log(good);
+                //                                                         });
+                                                                        
+                //                                                      }
+                //                                                  });
+                //                                                 // console.log(foundSize);
+                //                                                 Stock.create({quantity: n_quantity} , function(err,CreateStock){
+                //                                                     if(err){
+                //                                                         console.log(err);
+                                
+                //                                                     }
+                //                                                     else{
+                //                                                         // console.log(CreateStock);
+                //                                                         CreateStock.productID.push(data);
+                //                                                         CreateStock.colors.push(foundColor);
+                //                                                         CreateStock.size.push(foundSize);
+                //                                                         CreateStock.save(function(err,stock){
+                //                                                             if(err){
+                //                                                                 console.log(err);
+                //                                                             }
+                //                                                             else{
+                //                                                                 // console.log(stock);
+                //                                                                 Product.findOne({ProductName: n_name}, function(err,pushProduct){
+                //                                                                         if(err){
+                //                                                                             console.log(err);
+                //                                                                         }else{
+                                                                                            
+                //                                                                             Category.findOne({categoryName: n_category}, function(err, cate){
+                //                                                                                 if(err){
+                //                                                                                     console.log(err);
+                //                                                                                 }
+                //                                                                                 else{
+                //                                                                                     cate.productID.push(pushProduct);
+                                                                                                    
+                //                                                                                     cate.save(function(err,categor){
+                //                                                                                         if(err){
+                //                                                                                             console.log(err);
+                //                                                                                         }else{
+                //                                                                                             console.log(categor);
+
+                //                                                                                             res.redirect('/want2wear/new');
+
+                //                                                                                         }
+
+                //                                                                                     });
+                //                                                                                 }
+                //                                                                             })
+                //                                                                         }
+                //                                                                 });
+
+                                                                                
+                //                                                             }
+                //                                                         });                                                                       
+                //                                                     }
+                //                                                 });
+                //                                             }
+                //                                         });
+                //                                     }
+                //                                 });                                                                               
+                //                             }
+                //                         });
+                //                     }       
+                //                 });
+                //             }
+                //         });
+                //     }                  
+                // });

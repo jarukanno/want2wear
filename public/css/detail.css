@@ -1,0 +1,100 @@
+
+
+.container{
+    margin-top: 200px;
+    
+}
+.col-md-7 h2{
+    font-size: 25px;
+    color: #0c2431;
+}
+
+.checked {
+    color: orange;
+    font-size: 20px;
+    
+}
+
+.price{
+    color:black;
+    font-size: 26px;
+    font-weight: bold;
+}
+.product-buttom tr{
+    margin: 10px;
+}
+
+
+
+.product-buttom input {
+    border: 1px solid #ccc;
+    font-weight: bold;
+    height: 33px;
+    text-align: center;
+    width: 30px;
+    margin: 20px;
+}
+
+
+#buy,#add
+{
+	background: #b69b7d ;
+    width: 20%;
+    height: 20%;
+	margin-top: 30px;
+  	padding: 10px ;
+	border: 1px solid #fff;
+  	border-radius: 10px;
+  	cursor: pointer;
+	color: white;
+	font-style: normal;
+	text-align: center;
+	font-size: 15px;
+}
+
+
+/*detail*/
+/* Style tab links */
+
+.tablink {
+   
+    background-color: #555;
+    color: white;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 15px 26px;
+    font-size: 17px;
+    width: 50%;
+  }
+  
+  .tablink:hover {
+    background-color:  #decbb1;
+    
+  }
+  
+  /* Style the tab content (and add height:100% for full page content) */
+  .tabcontent {
+    border-radius: 10px;
+    color: white;
+    display: none;
+    padding: 100px 20px;
+    height: 800px;
+    border-radius: 10px;
+    margin-bottom: 100px;
+  }
+  
+  #Details {background-color:#e2e0d4;}
+  #Reviews {background-color: #e2e0d4;}
+#Reviews button{
+    
+    background-color:#b69b7d;
+    margin-left: 950px;
+}
+.col-md-5 img{
+    width: 100%;
+}
+.img-thumbnail{
+    width: 90%;
+}

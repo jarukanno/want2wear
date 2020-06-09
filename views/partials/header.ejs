@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>W2W</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+        <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Yeseva+One&family=Pacifico&family=Sacramento&display=swap" rel="stylesheet"> 
+        <link rel='stylesheet' type='text/css' href='/css/project.css' />
+        <script src="/js/project.js" defer></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+        <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+        
+        
+        
+    </head>
+
+        
+       
+   
+    <body onload="createSizeOptions()">
+    <div class="fixed-top">
+      <!--header-->
+        <div class="header">
+          <a href="/index" class="logo">Want to Wear</a>
+          <div class="header-right">
+            <% if (!currentUser){ %>
+            <a class="active" href="/login-register"><i class="fa fa-fw fa-user"></i>Log in & Register</a>
+            <% } else{ %>
+              Hello, <%= currentUser.username %>
+              <a href='/logout'>Log out</a>
+            <% } %>
+            
+          </div>
+        </div>
+
+      <!--navbar-->  
+        <div class="topnav">
+      
+          <a class="active" href="/index"><i class="fa fa-home"></i>HOME</a> 
+          
+          <div class="dropdown">
+        
+            <button class="dropbtn"><i class="fa fa-arrow-circle-down"></i>CATEGORY</button>
+            <div class="dropdown-content">
+              <a href="/want2wear/swimwear" name="swimwear" >SWIMWEAR</a>
+              <a href="#" name="jackets" >JACKETS</a>
+              <a href="shirt.html" name="shirts" >SHIRTS</a>
+              <a href="pant.html" name="pants" >PANTS</a>
+              <a href="skirt.html" name="skirts" >SKIRTS</a>
+              <a href="shoes.html" name="shoes" >SHOES</a>
+              <a href="bag.html" name="bags" >BAGS</a>
+              <a href="jewelry.html" name="jewelry" >JEWELRY</a>
+            </div>
+          </div>
+          <a href="profile.html"><i class="fa fa-address-card"></i>PROFILE</a>
+          
+          <b href="#icon"> 
+           
+            <a href="cart.html" style="padding: 0px 5px;  float: right; margin-right:30px;"><i class="fa fa-shopping-cart" aria-hidden="true" ></i></a>
+            
+           
+            
+          </b>
+        </div>
+      </div>

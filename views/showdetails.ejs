@@ -1,0 +1,150 @@
+<%- include("partials/header") %>
+
+    <link rel='stylesheet' type='text/css' href='/css/detail.css' />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+        <div class="container">
+            
+            <div class="row">
+                <div class="col-md-5">
+                <div class="img-thumbnail">
+                    
+                    <img src=<%= Product.image %> >
+                </div>
+                </div>
+                
+                <div class="col-md-7">
+                    <form action="#" method="POST">
+                    <h2> <%= Product.ProductName %> </h2>
+                    <div class="product-buttom">
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <p class="price"><%= Product.price %>$</p>
+                        
+                        
+                        
+                    <br>
+                    <tr>   
+                        <td class="size"></class>SIZE  :</td>
+                        
+                        <td required ><select id="selectSize" name="size" required>
+                            <% Product.size.forEach(function(products){ %>
+                            <option value="<%= products %>"><%= products.sizeName %></option>              
+                            <% }); %>
+                            </select>
+                                
+                        </td>       
+                    </tr>
+
+
+                    <br> 
+                    <br>
+                    <tr>   
+                         <td class="color"></class>COLOR  : 
+                       </td>
+                        <td required ><select id="selectColor" name="color" required>
+                            <% Product.color.forEach(function(products){ %>
+                          <option value="<%= products %>"><%= products.colorName %></option>
+                           <% }); %>
+                            </select>
+                        </td>       
+                    </tr>
+                
+                    
+                
+                    <br>
+                    <label>QUANTITY: </label>
+                        
+                    <br>
+                    <input id = "buy" type="submit" value="Buy Now" > 
+                
+                    <input id = "add" type="submit" value="Add To Cart" > 
+                    </form>
+                    </div>           
+
+            </div> 
+        </div>
+
+        <br>
+
+        <button type="button" title="Add like"><i class="fa fa-heart-o" ></i></button>
+        <span><%= Product.likes %> people like this</span> 
+        <br>
+        <br>
+        <br>
+        <br>
+        <!--details&reviews-->
+        <div class="col-md-12">
+        <div class="details&reviews">
+        <button class="tablink" onclick="openPage('Details', this, '#b69b7d')"id="defaultOpen">Details</button>
+        <button class="tablink" onclick="openPage('Reviews', this, '#b69b7d')" >Reviews</button>
+
+
+        <div id="Details" class="tabcontent">
+
+        <center>
+
+            <%= Product.details %>
+        </center>
+        </div>
+
+        <div id="Reviews" class="tabcontent">
+        <div class="form-group">
+            <label for="comment">Comment:</label>
+            <textarea class="form-control" rows="3" id="comment" name="text"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+            
+  
+  
+
+</div>
+
+
+</div>
+</div>
+        <script>
+        function openPage(pageName,elmnt,color) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablink");
+        for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].style.backgroundColor = "";
+        }
+        document.getElementById(pageName).style.display = "block";
+        elmnt.style.backgroundColor = color;
+        }
+
+        // Get the element with id="defaultOpen" and click on it
+        document.getElementById("defaultOpen").click();
+
+        // function createSizeOptions(){
+        //     var d = document.getElementById("selectSize");
+        //     var displaytext = d.options[d.selectedIndex].text;
+        //     document.getElementById("  ").value = displaytext;
+        //     var sOptions = "<option value=''>select</options>";
+        //     for(var i = )
+        // }
+        </script>
+
+
+
+
+
+
+
+
+<%- include("partials/footer") %>
