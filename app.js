@@ -82,7 +82,7 @@ var csrfProtection = csrf();
 // app.use(csrfProtection);
 
 app.use('https://want2wear.herokuapp.com/', userRoute);
-app.use('/', productRoute);
+app.use('https://want2wear.herokuapp.com/', productRoute);
 
 
 
