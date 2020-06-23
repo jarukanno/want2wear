@@ -1,0 +1,73 @@
+<%- include("partials/header") %>
+
+
+    <title>PAYMENT</title>
+    <link rel='stylesheet' type='text/css' href='/css/payment.css' />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="/js/payment.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <meta charset="utf-8">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <div class="container2">
+    <ul class="progressbar">
+        <li class="active2 aa"><i class="fa fa-shopping-cart" aria-hidden="true" ></i><br>CART<br></li>
+        <li class="aa"><i class="fa fa-credit-card"></i><br>payment<br></li>
+        <li class="active2 aa"><i class="fa fa-check"></i><br>order<br>complete</br></li>
+
+    </ul> 
+</div>
+<main>
+    <div class="basket">
+     
+      <div class="basket-labels">
+        <ul>
+          <li class="item item-heading">Please Select Method</li>
+        </ul>
+      </div>
+      <div class ="qrcode">
+      <form >
+        <input type="checkbox" id="myCheck"  onclick="myFunction()" required>
+        <label for="vehicle1"> QR CODE</label><br>
+        <p id="text" style="display:none"><img src="/images/qr.png" ></p>
+      </form>
+     </div>
+    </div>
+    <form method="POST" action="/want2wear/shoppingcart/complete?user=<%= user._id %>&shipment=<%= shipment %>">
+    <aside>
+      <div class="summary">
+        <div class="summary-total-items"><span class="total-items"></span><%= totalProduct %> Items in your Bag</div>
+        <div class="summary-subtotal">
+          <div class="subtotal-title">Subtotal</div>
+          <div class="subtotal-value final-value" id="basket-subtotal"><%= totalPrice %></div>
+          
+        </div>
+        <div class="summary-delivery">
+          <span name="shipment">Shipment Method : <%= shipment %></span>  
+          
+        </div>
+        <div class="summary-total">
+          <div class="total-title">Total</div>
+          <div class="total-value final-value" id="basket-total"><%= totalPrice %></div>
+        </div>
+        <div class="summary-checkout">
+          <button type="submit" class="checkout-cta">Confirm Order</button>
+        
+        </div>
+      </div>
+    </aside>
+  </form>
+  </main>
+</body>
+
+
+
+
+<%- include("partials/footer") %>

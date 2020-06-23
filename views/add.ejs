@@ -1,102 +1,123 @@
 <%- include("partials/header") %>
+
 <link rel='stylesheet' type='text/css' href='/css/add.css' />
 
-    <div class="container" style="width: 40%; margin:25px auto;">
-      <h3 style="text-align: center;">Add New Product</h3>
-        <form  action="/want2wear/new" name="AddProductForm" method="post">
-      
-          <div class="row">
-            <div class="col-25">
-              <label for="ProductName">Product Name</label>
-            </div>
-            <div class="col-75">
-              <input type="text" class="form-control" id="name" placeholder="Product Name" name="name" required>
-            </div>
+
+<% if(currentUser && currentUser.isAdmin) {%>
+  <div class="container" style="width: 40%; margin:25px auto;">
+    <h3 style="text-align: center;">Add New Product</h3>
+      <form  action="/want2wear/new" name="AddProductForm" method="post">
+    
+        <div class="row">
+          <div class="col-25">
+            <label for="ProductName">Product Name</label>
           </div>
-          <div class="row">
-            <div class="col-25">
-              <label for="Category">Category</label>
-            </div>
-            <div class="col-75">
-              <select class="form-control" id="category" name="category" required>
+          <div class="col-75">
+            <input type="text" class="form-control" id="name" placeholder="Product Name" name="name" required>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-25">
+            <label for="Category">Category</label>
+          </div>
+          <div class="col-75">
+            <select class="form-control" id="category" name="category" required>
+          
+            <option value="Swimwear">SWIMWEAR</option>
+                <option value="Jacket">JACKETS</option>
+                <option value="Shirt">SHIRTS</option>
+                <option value="Pants">PANTS</option>
+                <option value="Skirt">SKIRTS</option>
+                
+                <option value="Bags">BAGS</option>
+                <option value="Jewelry">JEWELRY</option>
+        </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-25">
+            <label for="Size">Size</label>
+          </div>
+          <div class="col-75">
+            <select class="form-control" id="size" name="size" required>
+                <option value="XL">XL</option>
+                <option value="L">L</option>
+                <option value="M">M</option>
+                <option value="S">S</option>
+                <option value="XS">XS</option>
+                <option value="Freesize">Freesize</option>
             
-              <option value="Swimwear">SWIMWEAR</option>
-                  <option value="Jacket">JACKETS</option>
-                  <option value="Shirt">SHIRTS</option>
-                  <option value="Pants">PANTS</option>
-                  <option value="Skirt">SKIRTS</option>
-                  <option value="Shoes">SHOES</option>
-                  <option value="Bags">BAGS</option>
-                  <option value="Jewelry">JEWELRY</option>
-          </select>
-            </div>
+        </select>
           </div>
+        </div>
 
-          <div class="row">
-            <div class="col-25">
-              <label for="Size">Size</label>
-            </div>
-            <div class="col-75">
-              <select class="form-control" id="size" name="size" required>
-                  <option value="XL">XL</option>
-                  <option value="L">L</option>
-                  <option value="M">M</option>
-                  <option value="S">S</option>
-                  <option value="XS">XS</option>
-              
-          </select>
-            </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="Color">Color</label>
           </div>
-
-          <div class="row">
-            <div class="col-25">
-              <label for="Color">Color</label>
-            </div>
-            <div class="col-75">
-              <input type="text" class="form-control" id="color" placeholder="Color of Product" name="color" required>
-            </div>
+          <div class="col-75">
+            <input type="text" class="form-control" id="color" placeholder="Color of Product" name="color" required>
           </div>
+        </div>
 
-          <div class="row">
-            <div class="col-25">
-              <label for="Price">Price</label>
-            </div>
-            <div class="col-75">
-              <input type="number" class="form-control" id="price" placeholder="Price" name="price" min="0" required>
-            </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="Price">Price</label>
           </div>
-
-          <div class="row">
-            <div class="col-25">
-              <label for="Quantity">Quantity</label>
-            </div>
-            <div class="col-75">
-              <input type="number" class="form-control" id="quantity" name="quantity" min="1" placeholder="Quantity" required>
-            </div>
+          <div class="col-75">
+            <input type="number" class="form-control" id="price" placeholder="Price" name="price" min="0" required>
           </div>
+        </div>
 
-          <div class="row">
-            <div class="col-25">
-              <label for="Details">Details</label>
-            </div>
-            <div class="col-75">
-              <textarea id="details" class="text" rows ="3" name="details" form="AddProductForm" ></textarea>
-            </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="Quantity">Quantity</label>
           </div>
-
-          <div class="row">
-            <div class="col-25">
-              <label for="Image">Image URL</label>
-            </div>
-            <div class="col-75">
-              <input type="text" class="form-control" id="image" placeholder="Input image URL" name="image" required>
-            </div>
+          <div class="col-75">
+            <input type="number" class="form-control" id="quantity" name="quantity" min="0" placeholder="Quantity" required>
           </div>
+        </div>
 
-          <div class="row">
-            <button type="submit" class="btn btn-outline-primary">Submit</button>
+        <div class="row">
+          <div class="col-25">
+            <label for="Details">Details</label>
           </div>
-      </form>
-    </div>
+          <div class="col-75">
+            <textarea id="w3review" name="details" rows="4" cols="50">
+               
+              </textarea>
+          </div>
+        </div>
 
+        <div class="row">
+          <div class="col-25">
+            <label for="Image">Image URL</label>
+          </div>
+          <div class="col-75">
+            <input type="text" class="form-control" id="image" placeholder="Input image URL" name="image" required>
+          </div>
+        </div>
+
+        <div class="row">
+          <button type="submit" class="btn btn-outline-primary">Submit</button>
+        </div>
+    </form>
+  </div>
+
+  <% } 
+  
+  else { %>
+    <script>
+      alert("You dont have permission to enter this page ");
+      location.href = '/index';
+    </script>
+    
+  <% }
+  %>
+
+
+
+    
 <%- include("partials/footer") %>

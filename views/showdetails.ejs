@@ -1,14 +1,19 @@
 <%- include("partials/header") %>
 
     <link rel='stylesheet' type='text/css' href='/css/detail.css' />
+    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    -->
     <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
+    <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
+    <script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+    
 
         <div class="container">
             
@@ -21,41 +26,80 @@
                 </div>
                 
                 <div class="col-md-7">
-                    <form action="#" method="POST">
-                    <h2> <%= Product.ProductName %> </h2>
+                    <form action="/want2wear/add-to-cart" method="POST">
+                    <h2 name="ProductName"> <%= Product.ProductName %> </h2>
                     <div class="product-buttom">
                         <i class="fa fa-star checked"></i>
                         <i class="fa fa-star checked"></i>
                         <i class="fa fa-star checked"></i>
                         <i class="fa fa-star checked"></i>
                         <i class="fa fa-star checked"></i>
-                        <p class="price"><%= Product.price %>$</p>
+                        <p class="price" name="price"><%= Product.price %>$</p>
                         
                         
                         
                     <br>
-                    <tr>   
-                        <td class="size"></class>SIZE  :</td>
-                        
-                        <td required ><select id="selectSize" name="size" required>
-                            <% Product.size.forEach(function(products){ %>
-                            <option value="<%= products %>"><%= products.sizeName %></option>              
-                            <% }); %>
-                            </select>
-                                
-                        </td>       
-                    </tr>
+                 
 
 
-                    <br> 
-                    <br>
+                    
                     <tr>   
-                         <td class="color"></class>COLOR  : 
+                         <td class="Options"></class>Options  : 
                        </td>
-                        <td required ><select id="selectColor" name="color" required>
-                            <% Product.color.forEach(function(products){ %>
-                          <option value="<%= products %>"><%= products.colorName %></option>
-                           <% }); %>
+                        <td required ><select id="selectOptions" name="Options" onchange="check(this.value)"required>
+                            
+                            <% if (currentUser){ %>
+                                <option value="" selected disabled>-- Select Options --</option>
+                                    <% Product.stock.forEach(function(products){ 
+                                        if(products.quantity == 0 || !products.available){ %>
+                                            <option value="<%= products._id %>" selected disabled>
+                                                <% products.size.forEach(function(size){ %>
+                                                    <%= size.sizeName %>  
+                                                <% });
+                                                     products.colors.forEach(function(color){ %>
+                                                       -- <%= color.colorName %> -- 
+                                                        <% }); %>
+                                                        
+                                                          Stock :  <%= products.quantity %></option>
+                                    <% }
+
+                                    else { %>
+                                        <option value="<%= products._id %>">
+                                            <% products.size.forEach(function(size){ %>
+                                                <%= size.sizeName %>  
+                                            <% });
+                                                 products.colors.forEach(function(color){ %>
+                                                   -- <%= color.colorName %> -- 
+                                                    <% }); %>
+                                                    
+                                                      Stock :  <%= products.quantity %></option>
+                                   <% }
+                                    
+                                    
+                                
+                              
+                                }); 
+                            }
+                            else { %>
+                                <option value="" selected disabled>-- Select Options --</option>
+                                <%  Product.stock.forEach(function(products){ %>
+
+                                    
+                                    <option value="<%= products._id %>" selected disabled>
+                                    <% products.size.forEach(function(size){ %>
+                                        <%= size.sizeName %>  
+                                    <% }); 
+                                     products.colors.forEach(function(color){ %>
+                                           -- <%= color.colorName %> -- 
+                                    <% }); %>
+                                            
+                                    Stock :  <%= products.quantity %></option>
+                                    
+                                
+                              
+                               <% }); 
+                            }%>
+                            
                             </select>
                         </td>       
                     </tr>
@@ -63,12 +107,28 @@
                     
                 
                     <br>
-                    <label>QUANTITY: </label>
-                        
+                    <label>QUANTITY: <input type="number"  id="selectQuantity" name="quantity" min="1" max="10" placeholder="1" required> </span>
+                        </label>
+                        <br><!--<% Product.stock.forEach(function(products){ %>
+                        <% products.size.forEach(function(size){ %>
+                        <%= size.sizeName %>  
+                        <% }); %>
+                        <% products.colors.forEach(function(color){ %>
+                            <%= color.colorName %>  
+                            <% }); %>
+                            
+                                <%= products.quantity %>  
+                                 <br>
+                        <% }); %>-->
                     <br>
-                    <input id = "buy" type="submit" value="Buy Now" > 
-                
-                    <input id = "add" type="submit" value="Add To Cart" > 
+                    <!-- <input id = "buy" type="submit" value="Buy Now" >  -->
+                    <% if (currentUser) { %>
+                        <input id = "add" onclick="addtocart()" type="submit" value="Add To Cart" >
+                   <% }
+                   else { %>
+                       <input id = "add" onclick="cantadd()" type="submit" value="Add To Cart" disabled > 
+                  <% } %>
+                    
                     </form>
                     </div>           
 
@@ -77,67 +137,147 @@
 
         <br>
 
-        <button type="button" title="Add like"><i class="fa fa-heart-o" ></i></button>
-        <span><%= Product.likes %> people like this</span> 
+        <!-- <button type="button" title="Add like"><i class="fa fa-heart-o" ></i></button>
+        <span><%= Product.likes %> people like this</span>  -->
         <br>
         <br>
         <br>
         <br>
         <!--details&reviews-->
-        <div class="col-md-12">
+        <% if (currentUser) { %>
+    <div class="col-md-12">
         <div class="details&reviews">
-        <button class="tablink" onclick="openPage('Details', this, '#b69b7d')"id="defaultOpen">Details</button>
-        <button class="tablink" onclick="openPage('Reviews', this, '#b69b7d')" >Reviews</button>
+            <button class="tablink" onclick="openPage('Details', this, '#b69b7d')"id="defaultOpen">Details</button>
+            <button class="tablink" onclick="openPage('Reviews', this, '#b69b7d')" >Reviews</button>
 
+        
+            <div id="Details" class="tabcontent">
 
-        <div id="Details" class="tabcontent">
+            <center>
+                
+                
+                <% if (currentUser.isAdmin) { %>
+                    <button class="modal-btn">EDIT</button>
+                <% } %>
+                    <br>
+                <%- Product.details %>
+            </center>
+            </div>
 
-        <center>
+            <div class="modal-bg">
+                <form action="/want2wear/update/details/<%= Product._id %>?_method=PUT" method="POST">
+                <div class="modal1">
 
-            <%= Product.details %>
-        </center>
+                <br>
+                <br>
+                <textarea name="detailEdit" rows="4" cols="50" class="details"></textarea><br>
+                <button type="submit">EDIT</button>
+                <span class="modal-close">x</span>
+                <br>
+                </div>
+                </form>
+            </div>
+
+            <div id="Reviews" class="tabcontent">
+                <div class="form-group">
+                    <% Product.review.map( review => { %>
+                        <%= review.username %> <br>
+                        <%- review.reviewsDetail %>
+
+                <% }); %>
+                </div>
+
+            </div>
         </div>
+    </div>
 
-        <div id="Reviews" class="tabcontent">
-        <div class="form-group">
-            <label for="comment">Comment:</label>
-            <textarea class="form-control" rows="3" id="comment" name="text"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+    <% } 
+    else { %>
+
+        <div class="col-md-12">
+            <div class="details&reviews">
+                <button class="tablink" onclick="openPage('Details', this, '#b69b7d')"id="defaultOpen">Details</button>
+                <button class="tablink" onclick="openPage('Reviews', this, '#b69b7d')" >Reviews</button>
+    
             
-  
-  
+                <div id="Details" class="tabcontent">
+    
+                <center>
+                    
+                    
+            
+                    <%- Product.details %>
+                </center>
+                </div>
+    
+               
+    
+                <div id="Reviews" class="tabcontent">
+                    <div class="form-group">
+                        <% Product.review.map( review => { %>
+                            <%= review.username %> <br>
+                            <%- review.reviewsDetail %>
+    
+                    <% }); %>
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+    <% } %>
 
-</div>
-
-
-</div>
-</div>
+        
+           
+        
         <script>
+        
+        CKEDITOR.replace( 'detailEdit' ); 
+
+        var modalBtn = document.querySelector('.modal-btn');
+        var modalBg = document.querySelector('.modal-bg');
+        var modalClose = document.querySelector('.modal-close');
+        
+        console.log(modalBg);
+        console.log(modalBtn);
+        
+        modalBtn.addEventListener('click', function(){
+            modalBg.classList.add('bg-active');
+        });
+
+        modalClose.addEventListener('click', function(){
+            modalBg.classList.remove('bg-active');
+        })
+
         function openPage(pageName,elmnt,color) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName("tablink");
-        for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].style.backgroundColor = "";
-        }
-        document.getElementById(pageName).style.display = "block";
-        elmnt.style.backgroundColor = color;
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].style.backgroundColor = "";
+            }
+            document.getElementById(pageName).style.display = "block";
+            elmnt.style.backgroundColor = color;
         }
 
         // Get the element with id="defaultOpen" and click on it
         document.getElementById("defaultOpen").click();
+        function check(selected){
+            // alert(selected);
 
-        // function createSizeOptions(){
-        //     var d = document.getElementById("selectSize");
-        //     var displaytext = d.options[d.selectedIndex].text;
-        //     document.getElementById("  ").value = displaytext;
-        //     var sOptions = "<option value=''>select</options>";
-        //     for(var i = )
+        }
+        // function addtocart() {
+        //     alert("Add to cart successfully!");
         // }
+
+        function cantadd() {
+            // alert("You have to login first!");
+            // location.href = '/index';
+        }
+        
+        
         </script>
 
 

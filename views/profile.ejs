@@ -1,0 +1,150 @@
+<%- include("partials/header") %>
+
+
+
+    <title>PROFILE</title>
+    <link rel='stylesheet' type='text/css' href='/css/project.css' />
+    <link rel='stylesheet' type='text/css' href='/css/profile.css' />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+   
+
+
+<style>
+
+</style>
+<div class="center">
+    <div class="container1">
+        <div class="card">
+            <img src="https://fbi.dek-d.com/27/0404/2055/117967513" alt="Avatar" style="width:100%">
+            <div class="container1">
+              <h4><b><%= currentUser.username %></b></h4> 
+              <p>Status : <% if(currentUser.isAdmin) { %>
+                  Admin 
+              <% }
+              else { %>
+                  User
+              <% } %></p> 
+            </div>
+          </div>
+      
+      
+    
+     <% if(!currentUser.isAdmin) { %>
+    <!--history-->
+    <br>
+    <h3>Purchase History</h3>
+    <br>
+<center>
+
+  <div class="basket">
+     
+    <div class="basket-labels">
+      <ul>
+        <li class="item item-heading">Item</li>
+        <li class="price">Price</li>
+        <li class="quantity">Quantity</li>
+        <li class="subtotal">Subtotal</li>
+      </ul>
+    </div>
+    <% order.Order.forEach(function(orderlist){ %>
+        <% orderlist.Purchase.forEach(function(purchaselist){ %>
+            <% purchaselist.PurchaseItem.forEach(function(productlist){ %>
+                <% productlist.productID.forEach(function(product){ %>
+                
+    <div class="basket-product">
+      <div class="item">
+        <div class="product-image">
+          <img src="<%= product.image %>" alt="Placholder Image 2" class="product-frame">
+        </div>
+        <div class="product-details">
+            <h1><strong><span class="item-quantity"><%= purchaselist.PurchaseQty %></span> x
+                <a href="/want2wear/<%= product._id %>"><%= product.ProductName %> </a>
+                </strong>
+            </h1>
+            <p><strong>
+                    <% productlist.colors.forEach(function(color){ %>
+                        <%= color.colorName %>
+                    <% }); %>
+                    , 
+                    <% productlist.size.forEach(function(size){ %>
+                        <%= size.sizeName %>
+                    <% }); %></strong></p>
+         
+        </div>
+      </div>
+      <div class="price"><%= product.price %> </div>
+
+      <div class="review">
+        <button class="modal-btn">Review</button> 
+      </div>
+
+      <div class="modal-bg">
+        <form action="/want2wear/add/review/<%= product._id %>?user=<%=currentUser.username %>" method="POST">
+        <div class="modal1">
+    
+        <br>
+        <br>
+        <textarea name="review" rows="4" cols="50" class="details"></textarea><br>
+        <button type="submit">EDIT</button>
+        <span class="modal-close">x</span>
+        <br>
+        </div>
+        </form>
+    </div>
+                <% }); %>
+      <div class="quantity"><%= purchaselist.PurchaseQty %></div>
+      
+      <div class="subtotal"><%= purchaselist.PurchasePrice %></div>
+   
+      
+
+
+
+    </div>
+        <% }); %>
+    <% }); %>
+    <% }); %>
+
+
+ 
+  </div>
+
+
+</center>
+
+
+<% }
+else { %>
+    
+<% } %>
+    </div>   
+</div>
+
+<script>
+        
+  CKEDITOR.replace( 'review' ); 
+
+  var modalBtn = document.querySelector('.modal-btn');
+  var modalBg = document.querySelector('.modal-bg');
+  var modalClose = document.querySelector('.modal-close');
+  
+  console.log(modalBg);
+  console.log(modalBtn);
+  
+  modalBtn.addEventListener('click', function(){
+      modalBg.classList.add('bg-active');
+  });
+
+  modalClose.addEventListener('click', function(){
+      modalBg.classList.remove('bg-active');
+  })
+
+</script>
+ 
+
+<%- include("partials/footer") %>

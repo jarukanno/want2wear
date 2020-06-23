@@ -4,9 +4,10 @@ const   mongoose = require('mongoose'),
 
 let UserSchema = new mongoose.Schema({
 
-    username : String,
+    username : {type: String, required: true},
     password: String,
-    role: {type: String, enum: ['admin','user'], default: 'user'}
+    isAdmin: {type: Boolean, default: false},
+    Order : [{type: mongoose.Schema.Types.ObjectId, ref: "Order"}] 
     
 });
 

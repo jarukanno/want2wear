@@ -1,0 +1,104 @@
+<%- include("partials/header") %>
+
+<link rel='stylesheet' type='text/css' href='/css/add.css' />
+
+
+<% if(currentUser && currentUser.isAdmin) {%>
+  <div class="container" style="width: 40%; margin:25px auto;">
+    
+    <span><img src=<%= product.image %> ></span><br>
+        <span>Product Name : <%= product.ProductName %></span><br>
+       
+       
+       <span><% product.categories.map( category =>{ %>
+                Category : <%= category.categoryName %>
+        <% }); %></span><br>
+
+        <span>Price : <%= product.price %></span><br>
+        <!-- <span>Details : <%= product.details %></span><br> -->
+        <span>Continue : <%= product.continue %></span><br>
+
+
+    <h3 style="text-align: center;">Edit Product</h3>
+      <form  action="/want2wear/store-management/update/product/<%= product._id %>?_method=PUT" name="AddProductForm" method="post">
+    
+        <div class="row">
+          <div class="col-25">
+            <label for="ProductName">Product Name</label>
+          </div>
+          <div class="col-75">
+            <input type="text" class="form-control" id="name" placeholder="Product Name" name="name" required>
+          </div>
+        </div>
+       
+
+        <div class="row">
+          <div class="col-25">
+            <label for="Price">Price</label>
+          </div>
+          <div class="col-75">
+            <input type="number" class="form-control" id="price" placeholder="<%= product.price %> $" name="price" min="0" required >
+          </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+              <label for="Category">Continue</label>
+            </div>
+        <div class="col-75">
+            <select class="form-control" id="category" name="continue" required>
+          
+                <option value="true">Continue</option>
+                <option value="false">Discontinue</option>
+                
+        </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-25">
+            <label for="Image">Image URL : </label>
+          </div>
+          <div class="col-75">
+            <input type="checkbox" id="myCheck"  onclick="myFunction()" value="<% product.image %>" name="exist">
+            <label for="vehicle1"> Use existing image URL </label><br>
+            <p id="text" style="display:none;" ><img src=<%= product.image %> ></p>
+            <input style="display:block" type="text" class="form-control" id="image1" placeholder="Input new image URL" name="image">
+          </div>
+        </div>
+
+        <div class="row">
+          <button type="submit" class="btn btn-outline-primary">Submit</button>
+        </div>
+    </form>
+  </div>
+
+  <% } 
+  
+  else { %>
+    <script>
+      alert("You dont have permission to enter this page ");
+      location.href = '/index';
+    </script>
+    
+  <% }
+  %>
+
+    <script>
+        function myFunction() {
+            var checkBox = document.getElementById("myCheck");
+            var text = document.getElementById("text");
+            var img = document.getElementById("image1");
+            if (checkBox.checked == true){
+                text.style.display = "block";
+                img.style.display = "none";
+            } else {
+                text.style.display = "none";
+                img.style.display = "block";
+            }
+        }
+
+    </script>
+
+    
+<%- include("partials/footer") %>

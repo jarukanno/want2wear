@@ -1,0 +1,70 @@
+
+<%- include("partials/header") %>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel='stylesheet' type='text/css' href='/css/manage.css' />
+
+<div class="container">
+    <h2>Product & Inventory Management</h2>
+    <br>
+    <table class="table table-striped">
+      <thead>
+        
+        
+        <tr>
+          <th>ACTION</th>
+          <th>PRODUCT NAME</th>
+          <th>PRODUCT IMAGES</th>
+        </tr>
+        <% allProduct.map(function(category){ %>
+            <% category.productID.map(function(product){ %>
+         <form id="manage" >
+        <tr><% product.stock.map((stock) => { %>
+          <td>
+              
+              <a href="/want2wear/<%= product._id %>"><i class="fa fa-eye" aria-hidden="true"></i> VIEW</a> |
+              <a href="/want2wear/store-management/edit/product/<%= product._id %>"><i class="fa fa-cog" aria-hidden="true"></i> EDIT Product</a> |
+              <a href="/want2wear/store-management/edit/stock/<%= stock._id %>"><i class="fa fa-cog" aria-hidden="true"></i> EDIT Stock</a>
+            
+              
+              
+          </td>
+          
+            
+                <td><%= product.ProductName %>
+                <% stock.size.map((size) =>{ %>
+                    
+                        <br>
+                   <span>Size : <%= size.sizeName %> , </span> 
+
+                <% }); 
+                 stock.colors.map((color) =>{ %>
+                    <span>Color: <%= color.colorName %> , </span>
+
+                <% }); %>
+                <span>Available : <%= stock.quantity %></span></td>
+                <td><img src="<%= product.image %>" alt="Placholder Image 2" class="product-frame">    </td>   
+                   </tr> <br>
+            
+           <% }); %>
+            <% }); %>
+        
+          
+       
+        <% }); %>
+      </thead>
+      <tbody>
+        
+        
+        
+      </tbody>
+    </table>
+    
+  </div>
+
+<%- include("partials/footer") %>

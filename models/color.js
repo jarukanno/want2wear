@@ -5,7 +5,7 @@ let colorSchema = new mongoose.Schema({
 
     colorName: {type: String, required: true}
 
-});
+}, { usePushEach: true });
    
 
 

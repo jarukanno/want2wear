@@ -7,15 +7,15 @@ let Productschema = new mongoose.Schema({
 
     ProductName: {type: String, required: true},
     categories:[{type: mongoose.Schema.Types.ObjectId, ref: "Category"}] ,
-    size:[{type: mongoose.Schema.Types.ObjectId, ref: "Size"}] ,
-    color:[{type: mongoose.Schema.Types.ObjectId, ref: "Color"}] ,
     image: {type: String, required: true},
     details: {type: String},
     price: {type: Number, required: true},
-    likes: {type: Number, required: true, default: "0"},
-    stock:[{type: mongoose.Schema.Types.ObjectId, ref: "Stock"}] 
+    review:[{type: mongoose.Schema.Types.ObjectId, ref: "Review"}],
+    stock:[{type: mongoose.Schema.Types.ObjectId, ref: "Stock"}],
+    continue :{type: Boolean, default: true},
+
     
-});
+}, { usePushEach: true });
 
 Productschema.plugin(deepPopulate);
 let Product = mongoose.model("Product", Productschema);

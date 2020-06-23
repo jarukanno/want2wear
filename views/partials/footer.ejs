@@ -3,8 +3,16 @@
     <div class="footer-left">
     <a href="project.html" class="logo">-Want2Wear-</a>
     <p class="footer-links">
-      
+      <% if (!currentUser){ %>
       <a class="active" href="login.html"><i class="fa fa-fw fa-user"></i>Log in & Register</a>
+      <% } 
+      
+      else { %>
+        Hello, <%= currentUser.username %>
+        <br>
+              <a href='/logout'>Log out</a>
+            <% } %>
+        <br>
       <p class="footer-year"> &Map; 2020</p>
     </p>
       

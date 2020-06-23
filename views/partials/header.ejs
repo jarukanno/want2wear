@@ -10,6 +10,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
         <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+        
         
         
         
@@ -18,7 +22,7 @@
         
        
    
-    <body onload="createSizeOptions()">
+    <body>
     <div class="fixed-top">
       <!--header-->
         <div class="header">
@@ -37,27 +41,57 @@
       <!--navbar-->  
         <div class="topnav">
       
-          <a class="active" href="/index"><i class="fa fa-home"></i>HOME</a> 
+          <a class="active" href="/index"><i class="fa fa-home"></i></a> 
           
           <div class="dropdown">
         
-            <button class="dropbtn"><i class="fa fa-arrow-circle-down"></i>CATEGORY</button>
+            <button class="dropbtn"><i class="fa fa-list"></i> CATEGORY</button>
             <div class="dropdown-content">
-              <a href="/want2wear/swimwear" name="swimwear" >SWIMWEAR</a>
-              <a href="#" name="jackets" >JACKETS</a>
-              <a href="shirt.html" name="shirts" >SHIRTS</a>
-              <a href="pant.html" name="pants" >PANTS</a>
-              <a href="skirt.html" name="skirts" >SKIRTS</a>
-              <a href="shoes.html" name="shoes" >SHOES</a>
-              <a href="bag.html" name="bags" >BAGS</a>
-              <a href="jewelry.html" name="jewelry" >JEWELRY</a>
+              <a href="/want2wear/category?value=Swimwear" name="swimwear" >SWIMWEAR</a>
+              <a href="/want2wear/category?value=Jacket" name="jackets" >JACKETS</a>
+              <a href="/want2wear/category?value=Shirt" name="shirts" >SHIRTS</a>
+              <a href="/want2wear/category?value=Pants" name="pants" >PANTS</a>
+              <a href="/want2wear/category?value=Skirt" name="skirts" >SKIRTS</a>
+              <!-- <a href="/want2wear/category?value=Shoes" name="shoes" >SHOES</a> -->
+              <a href="/want2wear/category?value=Bags" name="bags" >BAGS</a>
+              <a href="/want2wear/category?value=Jewelry" name="jewelry" >JEWELRY</a>
             </div>
           </div>
-          <a href="profile.html"><i class="fa fa-address-card"></i>PROFILE</a>
-          
+          <% if (currentUser) {
+            if (currentUser.isAdmin){ %>
+              <a href="/want2wear/new"><i class="fa fa-plus"></i> ADD</a>
+            
+            <a href="/want2wear/store-management"><i class="fa fa-cogs"></i> MANAGE</a>
+            <a href="/want2wear/profile"><i class="fa fa-user-o"></i> PROFILE</a>
+            <% } else{ %>
+              <a href="/want2wear/profile"><i class="fa fa-user-o"></i> PROFILE</a>
+              <b href="#icon"> 
+           <a href="/want2wear/shoppingcart" style="padding: 0px 5px;  float: right; margin-right:30px;"><i class="fa fa-shopping-cart" aria-hidden="true" > 
+             <% if (session.cart == null){ %>
+                
+             <% } 
+             else{ %>
+              <%= session.cart.totalProduct %>
+
+            <% } %>
+            </i>
+             
+            <% } %>
+                
+                               
+                              </a>
+       <%   }
+           else { %>
           <b href="#icon"> 
            
-            <a href="cart.html" style="padding: 0px 5px;  float: right; margin-right:30px;"><i class="fa fa-shopping-cart" aria-hidden="true" ></i></a>
+            <a href="/want2wear/shoppingcart" style="padding: 0px 5px;  float: right; margin-right:30px;"><i class="fa fa-shopping-cart" aria-hidden="true" >  </i>
+            
+          </a>
+
+          <% } %>
+          
+          
+          
             
            
             

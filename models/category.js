@@ -6,7 +6,7 @@ let categorySchema = new mongoose.Schema({
     categoryName: {type: String, required: true},
     productID:[{type: mongoose.Schema.Types.ObjectId, ref: "Product"}]
 
-});
+}, { usePushEach: true });
    
 
 

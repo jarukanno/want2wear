@@ -1,0 +1,68 @@
+<%- include("partials/header") %>
+
+    <link rel='stylesheet' type='text/css' href='/css/list.css' />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <div class="container">
+        <% if(Product == null){ %>
+            <h2><%= Category %></h2><br>
+            <h3>There is no items now.</h3>
+       <% }
+       else { %>
+            <h2><%= Category %></h2>
+
+        <div class="row">
+        <!--01-->
+            <% Product.productID.map(function(product){ %>
+
+            
+            <div class="col-md-3 col-sm-1">
+                <div class="img-thumbnail">
+                    <div class="product-top">
+                    <img  src=<%= product.image %> > 
+                        <div class="overlay">
+                            <% if(currentUser) {
+                                if(!currentUser.isAdmin){ %>
+                                    
+                                   
+                                <% }
+                                else { %>
+                                    <form id="deleteproduct"  action="/want2wear/delete/<%= product._id %>?_method=DELETE" method="POST">
+                                        <input type="hidden" name="id" value="<%= product._id %>">
+                                        <button type="submit" class="btn btn-secondary" title="Delete"><i class="fa fa-close" aria-hidden="true"></i></button>
+                                    </form>
+                               <% }
+                            }%>
+                            
+                            
+                        </div>
+                    </div> 
+                    <div class="product-buttom text-center">
+                     
+                        <h3 ><%= product.ProductName %> </h3>
+                        <h5><%= product.price %>$</h5>
+                        <a href="/want2wear/<%= product._id %>">More...</a>
+                    </div>           
+                </div>
+            </div>
+           <% }); %>
+
+           
+            
+            
+
+        </div>
+
+      <% } %>
+
+ 
+       
+    </div>
+    
+  
+        
+
+<%- include("partials/footer") %>

@@ -13,33 +13,41 @@
 <body>
     <div class ="hero">
         <div class ="form-box">
+            
                 <div class ="button-box">
                     <div id="btn"></div>
                     <button type ="button" class="toggle-btn" onclick="login()">Log In</button>
                     <button type ="button" class="toggle-btn" onclick="register()">Register</button>
                 </div>
-                
+                <!-- <% for (let i=0; i<errors.length; i++) {%> 
+                    <li><%= errors %></li>
+                    <% } %> -->
+                   
                 <form method="POST" id="login" class ="input-group" action="/login">
-                   <% for (let i=0; i<errors.length; i++) {%> 
-                    <li><%= errors[i] %></li>
-                    <% } %>
+                    <%= errors %>
+                    
                     <input type="text" class="input-field" name="username" placeholder="User Id" required>
                     <input type="password" class="input-field" name="password" placeholder="Enter Password" required>
                     <input type="checkbox" class="chech-box"><span>Remember Password</span>
                     <button type="submit" class="submit-btn">Log in</button>
                     
                     <a class="active" href="/index">HOME</a> 
+                    
                 </form>
 
+               
                 <form method="POST" action="/register" id="register"class ="input-group" >
                     
                     <input type="text" name="username" class="input-field" placeholder="User Id" required>
                     
                     <input type="password" name="password" class="input-field" placeholder="Enter Password" required>
-                    <input type="checkbox" class="chech-box"><span>I agree to the terms&conditions</span>
+                    <input type="password" name="adminCode" class="input-field" placeholder="Enter adminCode">
+                    <input type="checkbox" class="chech-box" required><span>I agree to the terms&conditions</span>
                     <button type="submit" class="submit-btn">Register</button>
                     <a class="active" href="/index"></i>HOME</a> 
+                   
                 </form>
+                
         </div>
     </div>
     <script>

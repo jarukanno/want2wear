@@ -1,0 +1,77 @@
+<%- include("partials/header") %>
+
+<link rel='stylesheet' type='text/css' href='/css/add.css' />
+
+
+<% if(currentUser && currentUser.isAdmin) {%>
+  <div class="container" style="width: 40%; margin:25px auto;">
+    
+       
+       
+    <% stock.productID.map( product =>{ %>
+        <span><img src=<%= product.image %> ></span><br>
+        <br><span>  Product Name : <%= product.ProductName %>
+    <% }); %></span><br>
+
+    <% stock.size.map( size =>{%>
+        <span>Size : <%= size.sizeName %></span><br>
+    <% });    
+     stock.colors.map( color =>{%>
+        <span>Color : <%= color.colorName %></span>
+    <% }); %>   
+        <br>
+        <span>Quantity : <%= stock.quantity %></span><br>
+        <span>Available : <%= stock.available %></span><br>
+
+    
+
+    <h3 style="text-align: center;">Edit Stock</h3>
+      <form  action="/want2wear/store-management/update/stock/<%= stock._id %>?_method=PUT" name="AddProductForm" method="post">
+    
+        <div class="row">
+          <div class="col-25">
+            <label for="Quantity">Quantity</label>
+          </div>
+          <div class="col-75">
+            <input type="number" class="form-control" id="quantity" name="quantity" min="0" placeholder="Quantity">
+          </div>
+        </div>
+
+        
+        <div class="row">
+            <div class="col-25">
+              <label for="Category">Available</label>
+            </div>
+        <div class="col-75">
+            <select class="form-control" id="category" name="available" >
+          
+                <option value="true">Available</option>
+                <option value="false">Unavailable</option>
+                
+        </select>
+          </div>
+        </div>
+
+       
+
+        <div class="row">
+          <button type="submit" class="btn btn-outline-primary">Submit</button>
+        </div>
+    </form>
+  </div>
+
+  <% } 
+  
+  else { %>
+    <script>
+      alert("You dont have permission to enter this page ");
+      location.href = '/index';
+    </script>
+    
+  <% }
+  %>
+
+
+
+    
+<%- include("partials/footer") %>
