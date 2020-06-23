@@ -81,7 +81,7 @@ var csrf = require('csurf');
 var csrfProtection = csrf();
 // app.use(csrfProtection);
 
-app.use('/', userRoute);
+app.use('https://want2wear.herokuapp.com/', userRoute);
 app.use('/', productRoute);
 
 
