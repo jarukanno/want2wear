@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -32,10 +33,10 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jarukanno/wantowear.git"
+    "url": "https://git.heroku.com/want2wear.git"
   },
   "bugs": {
-    "url": "https://github.com/jarukanno/wantowear/issues"
+    "url": "https://github.com/jarukanno/want2wear/issues"
   },
-  "homepage": "https://github.com/jarukanno/wantowear#readme"
+  "homepage": "https://want2wear.herokuapp.com/"
 }

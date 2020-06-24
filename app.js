@@ -75,8 +75,8 @@ passport.deserializeUser(User.deserializeUser());
 
 
 
-app.use('/', userRoute);
-app.use('/', productRoute);
+app.use('https://want2wear.herokuapp.com/', userRoute);
+app.use('https://want2wear.herokuapp.com/', productRoute);
 
 
 
