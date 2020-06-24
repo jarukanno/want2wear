@@ -22,9 +22,9 @@ const   express = require("express");
         seedDB = require("./seeds");
         ObjectId = require('mongoose').Types.ObjectId;
         port = process.env.PORT || 3000;
-          
-
-mongoose.connect("mongodb://localhost:27017/wanttowear", {useNewUrlParser: true,useUnifiedTopology: true},function(err, db) {
+        
+mongoose.connect("mongodb+srv://adminnaja:CvSv301rKqVcdjLm@want2wear-vvxqn.mongodb.net/want2wear?retryWrites=true&w=majority", {useNewUrlParser: true,useUnifiedTopology: true},function(err, db) {
+    
   if (err) throw err;
   else {console.log("Database created!");}
 
@@ -76,8 +76,8 @@ passport.deserializeUser(User.deserializeUser());
 
 
 
-app.use('https://want2wear.herokuapp.com/', userRoute);
-app.use('https://want2wear.herokuapp.com/', productRoute);
+app.use('/', userRoute);
+app.use('/', productRoute);
 
 
 
