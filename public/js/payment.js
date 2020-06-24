@@ -128,11 +128,15 @@ productRow.slideUp(fadeTime, function() {
 
 function myFunction() {
   var checkBox = document.getElementById("myCheck");
+  var summary = document.getElementById("summary");
   var text = document.getElementById("text");
   if (checkBox.checked == true){
     text.style.display = "block";
+    summary.style.display="block";
   } else {
      text.style.display = "none";
+
+     summary.style.display="none";
   }
 }
 

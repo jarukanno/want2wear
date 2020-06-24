@@ -1,8 +1,6 @@
- /*progress bar*/
-
- .container2 {
+.container2 {
     width: 1000px;
-    padding-top: 200px;
+    padding-top: 100px;
     padding-bottom: 30px;
     margin: auto; 
 
@@ -49,14 +47,110 @@
 }
 
 hr.new1 {
-    
-    border-top: 4px solid #0c2431;
+   
+    /* border-top: 3px solid rgba(68, 48, 48, 0.301) ; */
     margin-top: 250px;
     
   }
 .container2 h2{
-    font-family: cursive;
-    margin-top: 100px;
+    color: #0c2431;
+    font-family: 'Vidaloka', serif;
+    margin-top: 50px;
     font-size: 50px;
     text-align: center;
 }
+
+
+/*responsive*/
+/* @media only screen and (max-width: 1024px) {
+    body{
+      width: 1024px;
+    }
+     .active2{
+        display: none;
+    } 
+    .bket i {
+        padding-top: 90px;
+        font-size: 200px;
+       
+    }
+    .bket  {
+         
+        padding-left: 330px;  
+        
+        
+    }
+    .progressbar .aa{
+        font-size: 60px;
+        text-align: center;
+    }
+
+    .progressbar .aa:after{
+        display: none;
+    }
+    hr.new1 {
+    
+        border-top: 10px solid rgba(68, 48, 48, 0.301) ;
+        margin-top: 550px;
+        width: 600px;
+        
+    }
+    .container2 h2{
+        
+        
+        margin-top: 60px;
+        font-size: 50px;
+        
+    }
+} */
+@media only screen and (max-width: 1024px ){
+  .container2 {
+    width: 140%;
+    
+  }
+   hr.new1 {
+    width: 800px;  
+  }
+  .progressbar .aa {
+    width: 20%;
+    left: 17%;
+  }
+}
+@media only screen and (max-device-width: 768px) {
+    body{
+        width: 100%;
+       
+    }
+    .active2{
+        display: none;
+    }
+    .bket i {
+        padding-top: 50px;
+        font-size: 250px; 
+
+    }
+    .bket  {
+        
+        padding-left: 250px;  
+    }
+    .progressbar .aa{
+        font-size: 80px;
+        text-align: center;
+    }
+    .progressbar .aa:after{
+        display: none;
+    }
+    hr.new1 {
+        
+        border-top: 10px solid rgba(68, 48, 48, 0.301) ;
+        margin-top: 650px;
+        width: 800px;
+          
+    }
+    .container2 h2{
+        margin-top: 80px;
+        font-size: 70px;         
+    }
+    
+   
+  }    

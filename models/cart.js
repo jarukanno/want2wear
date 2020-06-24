@@ -9,41 +9,44 @@ module.exports =  function Cart(oldCart){
     this.add = function(item, id){
       
         var available = item.available;
-        var storedItem = this.items[id];
         
-        
-        if(!storedItem) {
-            storedItem =this.items[id] = {item: item, qty: 0, price:0};
-            if (item.qty>available){
-                console.log("Stock Unavailable");
-            }
-            else{
-                storedItem.qty= storedItem.item.qty;
-        
-                storedItem.price = storedItem.item.price * storedItem.qty;
-                this.totalQty+= storedItem.qty;
-                this.totalPrice += storedItem.price;
-                this.totalProduct++;
-                // console.log(storedItem);
-            }
-            
+        if (item.qty>available){
+            console.log("Stock Unavailable");
+            return ;
         }
         else{
+            var storedItem = this.items[id];
+            if(!storedItem) {
+                storedItem =this.items[id] = {item: item, qty: 0, price:0};
+                
+                    storedItem.qty= storedItem.item.qty;
             
-            let addQty = item.qty;
-            var newQty = storedItem.item.qty+= addQty;
-            if(newQty>available){
-                    console.log("Stock Unavailable");
+                    storedItem.price = storedItem.item.price * storedItem.qty;
+                    this.totalQty+= storedItem.qty;
+                    this.totalPrice += storedItem.price;
+                    this.totalProduct++;
+                    // console.log(storedItem);
+                
+                
             }
             else{
-                storedItem.qty= storedItem.item.qty;
-            storedItem.price = storedItem.item.price * storedItem.qty;
-            
-            this.totalQty+= addQty;
-            this.totalPrice +=item.price*addQty;  
+                
+                let addQty = item.qty;
+                var newQty = storedItem.item.qty+= addQty;
+                if(newQty>available){
+                        console.log("Stock Unavailable");
+                }
+                else{
+                    storedItem.qty= storedItem.item.qty;
+                storedItem.price = storedItem.item.price * storedItem.qty;
+                
+                this.totalQty+= addQty;
+                this.totalPrice +=item.price*addQty;  
+                }
+                
             }
-            
         }
+        
     }
 
     this.addOne = async function(id,available){

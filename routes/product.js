@@ -1,8 +1,5 @@
 const express = require('express'),
-      router =  express.Router();
-      
-     
-      
+      router =  express.Router(),
       Category = require('../models/category'),
       Stock = require('../models/stock'), 
       Color = require('../models/color'),
@@ -13,7 +10,6 @@ const express = require('express'),
 
 router.get("/want2wear/new", function(req,res,next){
     res.render("add");
-
 });
 
 router.post("/want2wear/new", function(req,res,next){
@@ -32,7 +28,7 @@ router.post("/want2wear/new", function(req,res,next){
         if(err){
             console.log(err);
         }else{
-            // console.log(found);
+            
             if(found == null){
 
                 Product.create(n_product , function(err,product){
@@ -40,7 +36,7 @@ router.post("/want2wear/new", function(req,res,next){
                         console.log(err);
                     }
                     else{
-                        //console.log(product);
+                        
                         Category.findOne({categoryName: n_category}, function(err,foundCategory){
                             if(err){
                                 console.log(err);
@@ -132,142 +128,13 @@ router.post("/want2wear/new", function(req,res,next){
                                 });
                             }
                         });
-                        // Color.findOne({colorName: n_color}, function(err,foundColor){
-                        //     if(err){
-                        //         console.log(err);
-                        //     }
-                        //     else{
-                               
-                        //         Product.findOne({ ProductName : n_name}, (err,nullColor) => {
-                        //             if(err){
-                        //                 console.log(err);
-                        //             }
-                        //             else{
-                        //                 //console.log(nullColor);
-                        //                 nullColor.color.push(foundColor);
-                        //                 nullColor.save((err,saveColor) =>{
-                        //                     if(err){
-                        //                         console.log(err);
-                        //                     }
-                        //                     else{
-                        //                         //console.log(saveColor);
-                        //                     }
-                        //                 })
-                        //             }
-                        //         });
-                        //     }
-                        // });
-                        // Size.findOne({sizeName: n_size}, function(err,foundSize){
-                        //     if(err){
-                        //         console.log(err);
-                        //     }
-                        //     else{
-                                
-                        //         Product.findOne({ ProductName : n_name}, (err,nullSize) => {
-                        //             if(err){
-                        //                 console.log(err);
-                        //             }
-                        //             else{
-                        //                 //console.log(nullSize);
-                        //                 nullSize.size.push(foundSize);
-                        //                 nullSize.save((err,saveSize) =>{
-                        //                     if(err){
-                        //                         console.log(err);
-                        //                     }
-                        //                     else{
-                        //                         //console.log(saveSize);
-                        //                     }
-                        //                 })
-                        //             }
-                        //         });
-                        //     }
-                        // });
+                        
                     }                  
                 });
-
-                
-
-                
+  
             }
             else {
               
-                // Color.findOne({colorName: n_color}, function(err,foundColor){
-                //     if(err){
-                //         console.log(err);
-                //     }
-                //     else{
-                //         //console.log(foundColor);
-                //         Product.findOne({ProductName : n_name , color : foundColor}, (err,nullColor) =>{
-                            
-                //            // console.log(nullColor);
-                //             if(nullColor == null ){
-                //                 //console.log(nullColor);
-                //                 Product.findOne({ProductName: n_name}, (err,addProductColor) => {
-                //                     if(err){
-                //                         console.log(err);
-                //                     }
-                //                     else{
-                //                         addProductColor.color.push(foundColor);
-                //                         addProductColor.save((err,saveColor) =>{
-                //                             if(err){
-                //                                 console.log(err);
-                //                             }
-                //                             else{
-                //                                 //console.log(saveColor);
-                //                             }
-                //                         });
-                //                     }
-                //                 });
-                                
-                //             }
-                           
-                //             else{
-                //                 console.log("Color Already exist");
-                                
-                                
-                //             }
-                //         });
-                //     }
-                // });
-
-                // Size.findOne({sizeName: n_size}, function(err,foundSize){
-                //     if(err){
-                //         console.log(err);
-                //     }
-                //     else{
-                //         //console.log(foundSize);
-                //         Product.findOne({ProductName : n_name , size : foundSize}, (err,nullSize) =>{
-                            
-                            
-                //             if(nullSize == null ){
-                //                // console.log(nullSize);
-                //                 Product.findOne({ProductName: n_name}, (err,addProductSize) => {
-                //                     if(err){
-                //                         console.log(err);
-                //                     }
-                //                     else{
-                //                         addProductSize.size.push(foundSize);
-                //                         addProductSize.save((err,saveSize) =>{
-                //                             if(err){
-                //                                 console.log(err);
-                //                             }
-                //                             else{
-                //                                // console.log(saveSize);
-                //                             }
-                //                         });
-                //                     }
-                //                 });
-                //             }
-                           
-                //             else{
-                //                 console.log("Size Already Exist");
-                                
-                                
-                //             }
-                //         });
-                //     }
-                // });
-
                 Color.findOne({colorName: n_color}, function(err,foundColor){
                     if(err){
                         console.log(err);
@@ -343,45 +210,47 @@ router.post("/want2wear/new", function(req,res,next){
 router.get("/want2wear/category",function(req,res,next){
 
     var value = req.query.value;
-    // console.log(value);
 
-    Category.findOne({categoryName: value}).populate('productID').exec(function (err, allProduct) {
+    Category.findOne({categoryName: value})
+    .populate('productID')
+    .exec(function (err, allProduct) {
             if (err) {
                 return handleError(err);
             }
-            else{
-                //console.log(allProduct);
-                res.render("category", {Product:allProduct, Category: value});
-                // console.log(allProduct);
-            }
-    
-    
+            else{            
+                res.render("category", {Product:allProduct, Category: value});              
+            }    
          });
 
 });
 
 router.delete('/want2wear/delete/:id', (req, res,next ) => {
     console.log(req.params.id);
-    Product.findById(req.params.id).exec().then( product => {
-        // console.log(product.categories);
-        Category.updateOne({_id: product.categories},{"$pull":{"productID":req.params.id}}, {safe:true, multi:true}).exec().then( catagory =>{
-            // console.log(catagory);
-            // Category.findOne({productID: req.body.id} ).exec().then( removeCate =>{
-            //     console.log(removeCate);
-            // })
-        }).catch(err => {
+    Product.findById(req.params.id)
+    .exec()
+    .then( product => {
+        
+        Category.updateOne({_id: product.categories},{"$pull":{"productID":req.params.id}}, {safe:true, multi:true})
+        .exec()
+        .then( catagory =>{})
+        .catch(err => {
             console.log(err);
         });
-        Stock.deleteMany({productID: req.params.id}).exec().then ( deleteStock =>{
+
+        Stock.deleteMany({productID: req.params.id})
+        .exec()
+        .then ( deleteStock =>{
             console.log(deleteStock);
         })
-        Product.findByIdAndRemove(req.params.id).exec().then( remove =>{
+
+        Product.findByIdAndRemove(req.params.id)
+        .exec()
+        .then( remove =>{
             console.log(remove);
              res.redirect(req.get('referer'));
         });
 
     })
-    
     .catch(err => {
         console.log(err);
     });
@@ -404,7 +273,6 @@ router.get("/want2wear/:id", function(req,res,next){
     ]
     })
     .exec(function (err,show){
-//    .deepPopulate('stock.size')
        if(err){
            console.log(err);
        }else{
@@ -415,28 +283,16 @@ router.get("/want2wear/:id", function(req,res,next){
 
 });
 
-
-
 router.post("/want2wear/add-to-cart", function(req,res,next){
     let options = req.body.Options;
     let quantity = parseInt(req.body.quantity);
    
     var cart = new Cart(req.session.cart ? req.session.cart : {items: {}});
-    // let username = currentUser.username;
+    
 
     
-   Stock.findById(options).populate('productID size colors')
-//    .populate({
-//        path: 'productID', 
-//        populate: [{
-//            path: 'price',
-//            model: 'Product'
-//        },{
-//            path: 'ProductName',
-//            model: 'Product'
-//        }
-//    ]
-//    })
+   Stock.findById(options)
+   .populate('productID size colors')
    .exec( function(err,stock){
        if(err){
            console.log(err);
@@ -455,11 +311,9 @@ router.post("/want2wear/add-to-cart", function(req,res,next){
                    let productID = findPrice._id;
                 
                    let addOne = {options:options,price:price,qty:quantity,available: Available};
-                //    console.log(addOne);
                    cart.add(addOne,options);
                    req.session.cart = cart;
-                //    delete req.session.cart;
-                   console.log(req.session.cart)
+                //    console.log(req.session.cart)
                    res.redirect(req.get('referer'));
                }
            });
@@ -469,9 +323,5 @@ router.post("/want2wear/add-to-cart", function(req,res,next){
    });
 
 });
-
-
-
-
 
 module.exports = router;

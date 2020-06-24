@@ -5,9 +5,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     
     
-    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    -->
+    
     <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
     <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
@@ -15,25 +13,21 @@
     <script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
     
 
-        <div class="container">
+    <div class="container">
             
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-md-12 col-lg-6">
                 <div class="img-thumbnail">
                     
                     <img src=<%= Product.image %> >
                 </div>
                 </div>
                 
-                <div class="col-md-7">
+                <div class="col-md-12 col-lg-5" id="product1">
                     <form action="/want2wear/add-to-cart" method="POST">
                     <h2 name="ProductName"> <%= Product.ProductName %> </h2>
                     <div class="product-buttom">
-                        <i class="fa fa-star checked"></i>
-                        <i class="fa fa-star checked"></i>
-                        <i class="fa fa-star checked"></i>
-                        <i class="fa fa-star checked"></i>
-                        <i class="fa fa-star checked"></i>
+                        
                         <p class="price" name="price"><%= Product.price %>$</p>
                         
                         
@@ -109,59 +103,49 @@
                     <br>
                     <label>QUANTITY: <input type="number"  id="selectQuantity" name="quantity" min="1" max="10" placeholder="1" required> </span>
                         </label>
-                        <br><!--<% Product.stock.forEach(function(products){ %>
-                        <% products.size.forEach(function(size){ %>
-                        <%= size.sizeName %>  
-                        <% }); %>
-                        <% products.colors.forEach(function(color){ %>
-                            <%= color.colorName %>  
-                            <% }); %>
-                            
-                                <%= products.quantity %>  
-                                 <br>
-                        <% }); %>-->
+                        <br>
                     <br>
-                    <!-- <input id = "buy" type="submit" value="Buy Now" >  -->
+                    
                     <% if (currentUser) { %>
-                        <input id = "add" onclick="addtocart()" type="submit" value="Add To Cart" >
+                         <input id = "add" onclick="addtocart()" type="submit" value="Add To Cart" style="background-image: linear-gradient(to right, #243949 0%, #517fa4 100%); border-radius: 24px;">
                    <% }
                    else { %>
-                       <input id = "add" onclick="cantadd()" type="submit" value="Add To Cart" disabled > 
+                       <input id = "add" onclick="cantadd()" type="submit" value="Add To Cart" style="background-image: linear-gradient(to right, #243949 0%, #517fa4 100%); border-radius: 24px;" disabled > 
                   <% } %>
                     
                     </form>
                     </div>           
 
             </div> 
-        </div>
+        
 
         <br>
 
-        <!-- <button type="button" title="Add like"><i class="fa fa-heart-o" ></i></button>
-        <span><%= Product.likes %> people like this</span>  -->
+        
         <br>
         <br>
         <br>
         <br>
-        <!--details&reviews-->
+        
         <% if (currentUser) { %>
     <div class="col-md-12">
         <div class="details&reviews">
-            <button class="tablink" onclick="openPage('Details', this, '#b69b7d')"id="defaultOpen">Details</button>
-            <button class="tablink" onclick="openPage('Reviews', this, '#b69b7d')" >Reviews</button>
+            <button class="tablink" onclick="openPage('Details', this, '#b69b7d')" id="defaultOpen" style="border-radius: 24px;background-color: mediumaquamarine;"><i class="fa fa-info-circle"></i> Details</button>
+            <button class="tablink" onclick="openPage('Reviews', this, '#b69b7d')" style="border-radius: 24px" ><i class="fa fa-comments"></i> Reviews</button>
 
         
             <div id="Details" class="tabcontent">
 
-            <center>
+            
                 
                 
                 <% if (currentUser.isAdmin) { %>
-                    <button class="modal-btn">EDIT</button>
+                    <button class="modal-btn" style="float: right; border-radius: 24px; font-family: 'Questrial', sans-serif;
+                    border-color: transparent;">EDIT</button>
                 <% } %>
                     <br>
                 <%- Product.details %>
-            </center>
+           
             </div>
 
             <div class="modal-bg">
@@ -180,10 +164,19 @@
 
             <div id="Reviews" class="tabcontent">
                 <div class="form-group">
-                    <% Product.review.map( review => { %>
-                        <%= review.username %> <br>
-                        <%- review.reviewsDetail %>
 
+                    <% Product.review.map( review => { %>
+                        
+                       <div class="user">
+                           <div class="reviewtxt">
+                                <%= review.username  %> :
+                                <div class="review" style="font-family: 'Raleway', sans-serif;"> <%- review.reviewsDetail %> 
+                                </div> 
+                            </div>
+                        </div>
+                       
+                       <hr class="new1">
+                       <br>
                 <% }); %>
                 </div>
 
@@ -195,7 +188,7 @@
     else { %>
 
         <div class="col-md-12">
-            <div class="details&reviews">
+            <div class="details&reviews" style="margin-top: 10%;">
                 <button class="tablink" onclick="openPage('Details', this, '#b69b7d')"id="defaultOpen">Details</button>
                 <button class="tablink" onclick="openPage('Reviews', this, '#b69b7d')" >Reviews</button>
     
@@ -226,8 +219,10 @@
         </div>
     <% } %>
 
+</div>
+</div>
         
-           
+
         
         <script>
         
@@ -276,6 +271,7 @@
             // alert("You have to login first!");
             // location.href = '/index';
         }
+         s[slideIndex-1].className += " active";
         
         
         </script>

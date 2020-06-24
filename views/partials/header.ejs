@@ -4,8 +4,8 @@
         <title>W2W</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         
-        <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Yeseva+One&family=Pacifico&family=Sacramento&display=swap" rel="stylesheet"> 
-        <link rel='stylesheet' type='text/css' href='/css/project.css' />
+        <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&family=Bad+Script&family=Bebas+Neue&family=Comfortaa:wght@300&family=IBM+Plex+Sans:wght@200&family=Questrial&family=Source+Serif+Pro&family=Vidaloka&family=IBM+Plex+Sans:wght@200&family=Comfortaa:wght@300&family=Questrial&family=Abril+Fatface&family=Raleway:wght@300&family=Red+Hat+Text:wght@400;500&family=Caveat:wght@400;700&family=Cedarville+Cursive&family=DM+Serif+Display:ital@0;1&family=Galada&family=Pattaya&family=Playfair+Display&family=Playfair+Display+SC:wght@700&family=Yeseva+One&display=swap" rel="stylesheet">
+        
         <script src="/js/project.js" defer></script>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
@@ -13,6 +13,8 @@
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+        
+        <link rel='stylesheet' type='text/css' href='/css/project.css' />
         
         
         
@@ -23,9 +25,13 @@
        
    
     <body>
-    <div class="fixed-top">
+    <div class="fixed-top" style="position: initial;">
       <!--header-->
         <div class="header">
+          <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+          </a>
+
           <a href="/index" class="logo">Want to Wear</a>
           <div class="header-right">
             <% if (!currentUser){ %>
@@ -39,7 +45,7 @@
         </div>
 
       <!--navbar-->  
-        <div class="topnav">
+        <div class="topnav" id="myTopnav">
       
           <a class="active" href="/index"><i class="fa fa-home"></i></a> 
           
@@ -66,12 +72,14 @@
             <% } else{ %>
               <a href="/want2wear/profile"><i class="fa fa-user-o"></i> PROFILE</a>
               <b href="#icon"> 
-           <a href="/want2wear/shoppingcart" style="padding: 0px 5px;  float: right; margin-right:30px;"><i class="fa fa-shopping-cart" aria-hidden="true" > 
+
+              <a href="/want2wear/shoppingcart" style="padding: 0px 5px;  float: right;margin-right: 5%; color: #0c2431;"><i style="color:#0c2431;" class="fa fa-shopping-cart" aria-hidden="true" > 
+               
              <% if (session.cart == null){ %>
                 
              <% } 
              else{ %>
-              <%= session.cart.totalProduct %>
+              <u class="badge"><%= session.cart.totalProduct %></u>
 
             <% } %>
             </i>
@@ -82,11 +90,11 @@
                               </a>
        <%   }
            else { %>
-          <b href="#icon"> 
+          <!-- <b href="#icon"> 
            
             <a href="/want2wear/shoppingcart" style="padding: 0px 5px;  float: right; margin-right:30px;"><i class="fa fa-shopping-cart" aria-hidden="true" >  </i>
             
-          </a>
+          </a> -->
 
           <% } %>
           

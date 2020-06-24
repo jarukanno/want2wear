@@ -17,9 +17,9 @@
 
 <body>
   <div class="container2">
-    <ul class="progressbar">
+    <ul class="progressbar" style="width:100%">
         <li class="active2 aa"><i class="fa fa-shopping-cart" aria-hidden="true" ></i><br>CART<br></li>
-        <li class="aa"><i class="fa fa-credit-card"></i><br>payment<br></li>
+        <li class="aa bket"><i class="fa fa-credit-card"></i><br>payment<br></li>
         <li class="active2 aa"><i class="fa fa-check"></i><br>order<br>complete</br></li>
 
     </ul> 
@@ -42,7 +42,7 @@
     </div>
     <form method="POST" action="/want2wear/shoppingcart/complete?user=<%= user._id %>&shipment=<%= shipment %>">
     <aside>
-      <div class="summary">
+      <div class="summary" id="summary" style="display: none;">
         <div class="summary-total-items"><span class="total-items"></span><%= totalProduct %> Items in your Bag</div>
         <div class="summary-subtotal">
           <div class="subtotal-title">Subtotal</div>
@@ -50,7 +50,7 @@
           
         </div>
         <div class="summary-delivery">
-          <span name="shipment">Shipment Method : <%= shipment %></span>  
+          <span name="shipment" style="border-radius: 24px;" name="shipment" class="summary-delivery-selection">Shipment Method : <%= shipment %></span>  
           
         </div>
         <div class="summary-total">
@@ -58,12 +58,13 @@
           <div class="total-value final-value" id="basket-total"><%= totalPrice %></div>
         </div>
         <div class="summary-checkout">
-          <button type="submit" class="checkout-cta">Confirm Order</button>
+          <button type="submit" style="border-radius: 24px; color:#0c2431; border-color:transparent;" class="checkout-cta">Confirm Order</button>
         
         </div>
       </div>
-    </aside>
+    
   </form>
+  </aside>
   </main>
 </body>
 

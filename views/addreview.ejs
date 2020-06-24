@@ -1,0 +1,91 @@
+<%- include("partials/header") %>
+
+<link rel='stylesheet' type='text/css' href='/css/add.css' />
+<script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+<style>
+  img{
+        width: 50%;
+    }
+    span{
+      font-size: 30px;
+      padding: 10%;
+    }
+    form{
+      width: 120%;
+      font-size: 30px;
+    }
+    .row button{
+      font-size: 35px;
+    }
+    @media only screen and (max-device-width: 768px ){
+      .row button {
+        width: 40%;
+      }
+    }
+    @media only screen and (max-device-width: 375px ){
+      .row button{
+        width: 60%;
+      }
+    }
+    
+</style>
+
+<% if(currentUser.username == user) {%>
+  <div class="container" style="width: 60%; margin:25px auto;">
+    
+    <center><span><img src=<%= product.image %> ></span><br><i class="fa fa-pagelines"></i><br>
+        <span> <%= product.ProductName %></span><br>
+       
+       
+       <span><% product.categories.map( category =>{ %>
+                Category : <%= category.categoryName %>
+        <% }); %></span><br>
+
+        <span>Price : <%= product.price %></span><br>
+        <!-- <span>Details : <%= product.details %></span><br> -->
+        <span>Continue : <%= product.continue %></span><br></center>
+
+
+    <h3 style="text-align: center;">Add Review</h3>
+      <form  action="/want2wear/add/review/<%= product._id %>?user=<%= user%>" name="AddReviewForm" method="post">
+        
+        <div class="row">
+          <div class="col-25">
+            <label for="username">Username : <%= user %></label>
+          </div>
+          
+        </div>
+
+        <div class="row">
+          <div class="col-25">
+            <label for="reviews">Reviews :</label>
+          </div>
+          <div class="col-75">
+            <textarea name="review" rows="4" cols="50" class="review" id="review"></textarea>
+          </div>
+        </div>
+       
+        <div class="row">
+          <button type="submit" class="btn btn-outline-primary">Submit</button>
+        </div>
+    </form>
+  </div>
+
+  <% } 
+  
+  else { %>
+    <script>
+      alert("You dont have permission to enter this page ");
+      location.href = '/index';
+    </script>
+    
+  <% }
+  %>
+
+    <script>
+        CKEDITOR.replace( 'review' ); 
+
+    </script>
+
+    
+<%- include("partials/footer") %>

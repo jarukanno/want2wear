@@ -1,4 +1,7 @@
-
+h3 {
+  font-family: 'Cedarville Cursive', cursive;
+  font-size: 30px;
+}
 input[type=text],input[type=number], select, textarea {
   width: 100%;
   padding: 12px;
@@ -46,13 +49,13 @@ input[type=submit]:hover {
 
 .row button
 {
-	background: #b69b7d ;
+	background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
     width: 20%;
     height: 20%;
 	margin-top: 20px;
   	padding: 10px ;
 	border: 1px solid #fff;
-  	border-radius: 10px;
+  	border-radius: 24px;
   	cursor: pointer;
 	color: white;
 	font-style: normal;
@@ -67,6 +70,9 @@ input[type=submit]:hover {
   display: table;
   clear: both;
 }
+.container{
+  width: 60%;
+}
 
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
@@ -75,3 +81,20 @@ input[type=submit]:hover {
     margin-top: 0px;
   }
 }
+
+@media screen and (max-width: 1024px ){
+  .container{
+    width: 60%;
+  }
+
+}
+
+
+@media  screen and (max-device-width: 375px) {
+  .container{
+    width: 60%;
+  }
+  .row button{
+    width: 50%;
+  }
+}  

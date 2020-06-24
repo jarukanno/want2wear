@@ -1,13 +1,26 @@
 <%- include("partials/header") %>
 
 <link rel='stylesheet' type='text/css' href='/css/add.css' />
-
+<script src="/js/editproduct.js" defer></script>
+<style>
+  img{
+        width: 60%;
+    }
+    span{
+      font-size: 15px;
+      padding: 10%;
+    }
+    form{
+      width: 120%;
+    }
+    
+</style>
 
 <% if(currentUser && currentUser.isAdmin) {%>
-  <div class="container" style="width: 40%; margin:25px auto;">
+  <div class="container" style="width: 50%; margin:25px auto;">
     
-    <span><img src=<%= product.image %> ></span><br>
-        <span>Product Name : <%= product.ProductName %></span><br>
+    <center style="font-family: Arial, Helvetica, sans-serif;"><span><img src=<%= product.image %> ></span><br><i class="fa fa-pagelines"></i><br>
+        <span> <%= product.ProductName %></span><br>
        
        
        <span><% product.categories.map( category =>{ %>
@@ -16,7 +29,7 @@
 
         <span>Price : <%= product.price %></span><br>
         <!-- <span>Details : <%= product.details %></span><br> -->
-        <span>Continue : <%= product.continue %></span><br>
+        <span>Continue : <%= product.continue %></span><br></center>
 
 
     <h3 style="text-align: center;">Edit Product</h3>
@@ -60,7 +73,7 @@
             <label for="Image">Image URL : </label>
           </div>
           <div class="col-75">
-            <input type="checkbox" id="myCheck"  onclick="myFunction()" value="<% product.image %>" name="exist">
+            <input type="checkbox" id="myCheck"  onclick="imageEdit()" name="exist">
             <label for="vehicle1"> Use existing image URL </label><br>
             <p id="text" style="display:none;" ><img src=<%= product.image %> ></p>
             <input style="display:block" type="text" class="form-control" id="image1" placeholder="Input new image URL" name="image">
@@ -71,6 +84,7 @@
           <button type="submit" class="btn btn-outline-primary">Submit</button>
         </div>
     </form>
+   
   </div>
 
   <% } 
@@ -84,21 +98,7 @@
   <% }
   %>
 
-    <script>
-        function myFunction() {
-            var checkBox = document.getElementById("myCheck");
-            var text = document.getElementById("text");
-            var img = document.getElementById("image1");
-            if (checkBox.checked == true){
-                text.style.display = "block";
-                img.style.display = "none";
-            } else {
-                text.style.display = "none";
-                img.style.display = "block";
-            }
-        }
-
-    </script>
+    
 
     
 <%- include("partials/footer") %>

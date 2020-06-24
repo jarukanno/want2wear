@@ -1,5 +1,5 @@
 const express = require('express'),
-      router =  express.Router();
+      router =  express.Router(),
       passport = require('passport'),
       User = require('../models/user'),
       Stock = require('../models/stock'), 
@@ -17,23 +17,15 @@ const express = require('express'),
 router.get("/", function(req,res){
     
         res.render("landing");
-    
 });
 
 router.get("/index", function(req,res){
         res.render("landing");
-    
 });
     
-router.get("/hidden", function(req,res){
-    res.render("hidden");
-    
-});
-
 router.get("/login-register", function(req,res, next){
     const errors = req.flash.error || [];
     res.render("login-register",{errors:errors});
-    
 });
     
 router.post("/login", passport.authenticate('local', { 
@@ -45,52 +37,43 @@ router.post("/login", passport.authenticate('local', {
         return next(err);
         }
         else{
-            
                 req.flash('success', 'Hi!, ' +user.username);
-                res.redirect('/index');
-            
-        }
-        
+                res.redirect('/index');           
+        }   
     });
 });
 
 router.post("/register", (req,res) => {
-        // console.log(req.body.username);
-        // console.log(req.body.password);
-        // console.log(req.body.adminCode);
-        
-        User.register(new User({username : req.body.username}), req.body.password, function(errors, user)  {
+
+        User.register(new User({username : req.body.username}), req.body.password, (errors, user) => {
             if (errors) {
-            // return res.status(500).json({err: err});
-            console.log(errors);
-            return res.render('login-register', {errors: errors.message} );
+                console.log(errors);
+                return res.render('login-register', {errors: errors.message} );
             }
-            // console.log(user);
-            if(req.body.adminCode === 'adminnaja'){
-               User.findOneAndUpdate({username: req.body.username}, {isAdmin: true}, function (err,update) {
+            else{
+                if(req.body.adminCode === 'adminnaja'){
+                User.findOneAndUpdate({username: req.body.username}, {isAdmin: true},  (err,update) => {
                    console.log(err);
-                //    console.log(update);
-               });
-            }
-            passport.authenticate('local')(req, res, () => {
-                req.session.save((err) => {
-                    if (err) {
-                        return next(err);
-                    }
-                    else{
-                        return res.render('login-register', {errors: "Please login"} );
-                        
-                    }
-                    
                 });
-            });
+                }
+                passport.authenticate('local')(req, res, () => {
+                    req.session.save((err) => {
+                        if (err) {
+                            return next(err);
+                        }
+                        else{
+                            return res.render('login-register', {errors: "Please login"} );                       
+                        } 
+                    });
+                });
+            }
+            
         });
 });
     
 router.get('/want2wear/profile' ,middleware.isLoggedIn,  function(req,res){
 
     var currentUser = req.user.username;
-    // console.log(currentUser);
     User.findOne({username: currentUser})
     .populate({
         path: 'Order',
@@ -112,22 +95,17 @@ router.get('/want2wear/profile' ,middleware.isLoggedIn,  function(req,res){
                     model: 'Color'
                 }]
             }]
-        }
-    ]
+        }]
     })
     .exec(function (err,show){
         
                if(err){
                    console.log(err);
-               }else{
-                // console.log(show);
-                
-
+               }
+               else{
                 res.render("profile" ,{order:show});
-                //  res.render("showdetails", {Product:show});
                }
            });
-    
 });
     
 
@@ -136,24 +114,23 @@ router.get("/want2wear/shoppingcart", middleware .isLoggedIn, function(req,res,n
     if(req.session.cart == null) {
         var product = null ;
         return res.render("cart", {products: product, totalPrice:0});    
-        // res.redirect(req.get('referer'));
+        
     }
     else{
         async function main(){
             var newProduct = [];
             var cart = new Cart(req.session.cart ? req.session.cart : {items: {}}); 
-            // console.log(cart);
             var data = cart.generateArray();
             let promises = await (data.map( function(stock){
                    return Stock.findById(stock.item.options).populate('productID size colors').exec().then(function(details){
                     
                                             newProduct.push({details:details,qty:stock.qty, price:stock.price });   
-                                             return newProduct;
-                });   
+                                            return newProduct;
+                            });   
             }));
             Promise.all(promises).then(function(results){
-            //    console.log(results); 
-              res.render("cart", {products: results[0], totalPrice: cart.totalPrice, totalQty: cart.totalQty , totalProduct: cart.totalProduct, user: user}); 
+            
+                res.render("cart", {products: results[0], totalPrice: cart.totalPrice, totalQty: cart.totalQty , totalProduct: cart.totalProduct, user: user}); 
             })  
         }
         main();
@@ -171,8 +148,7 @@ router.put("/want2wear/shoppingcart/update/:id" , function(req,res,next){
         else{
             cart.addOne(stockID,available.quantity);
             req.session.cart = cart;
-        // console.log(req.session.cart);
-        res.redirect('/want2wear/shoppingcart');
+            res.redirect('/want2wear/shoppingcart');
         }
     });  
 });
@@ -202,7 +178,6 @@ router.delete("/want2wear/shoppingcart/clear" , function(req,res,next){
     delete req.session.cart;
     res.redirect('/want2wear/shoppingcart');
 
-
 });
 
 
@@ -213,7 +188,7 @@ router.post("/want2wear/shoppingcart/payment" ,middleware .isLoggedIn,  function
     var shipment = req.body.shipment;
     if(shipment == null) {
         shipment = "Unselected";
-        res.redirect('/want2wear/shoppingcart') ; 
+        res.redirect('/want2wear/shoppingcart'); 
     }
 
     if(user != currentUser._id){
@@ -223,14 +198,12 @@ router.post("/want2wear/shoppingcart/payment" ,middleware .isLoggedIn,  function
         if(req.session.cart == null) {
         
          res.redirect('/want2wear/shoppingcart') ; 
-        // res.redirect(req.get('referer'));
         }
         else{
             
             var cart = new Cart(req.session.cart ? req.session.cart : {items: {}}); 
-        
             res.render("payment", {totalProduct: cart.totalProduct,totalPrice: cart.totalPrice,shipment:shipment,user: currentUser});
-            }
+        }
     }
     
     
@@ -241,8 +214,6 @@ router.post("/want2wear/shoppingcart/complete" ,middleware .isLoggedIn,  functio
     var user = req.query.user;
     var currentUser = req.user;
     var shipment = req.query.shipment;
-    // console.log(user);
-    // console.log(currentUser._id);
     
     if( user != currentUser._id){
         res.redirect('/index');
@@ -252,27 +223,22 @@ router.post("/want2wear/shoppingcart/complete" ,middleware .isLoggedIn,  functio
             res.redirect('/want2wear/shoppingcart') ;
         }
         else{
-            
-          var promise1 =  User.findById(currentUser).exec()
+          var promise1 =  User.findById(currentUser)
+          .exec()
           .then(function(foundUser){
-                
-                        
-                        Order.create({User : foundUser,shipmentType : shipment}).then( addnewUser => {
-                            // console.log(addnewUser);
-                            
 
+                        Order.create({User : foundUser,shipmentType : shipment}).then( addnewUser => {
                             async function main(addnewUser){
-                                // console.log(addnewUser);
+                                
                                 var newProduct = [];
                                 var cart = new Cart(req.session.cart ? req.session.cart : {items: {}}); 
-                                // console.log(cart);
                                 var data = cart.generateArray();
                                 let promises = await (data.map( function(stock){
                                        return Stock.findById(stock.item.options).populate('productID size colors').exec().then(function(details){
                                         
                                                                 newProduct.push({details:details,qty:stock.qty, price:stock.price });   
                                                                  return newProduct;
-                                    });   
+                                        });   
                                 }));
                                 Promise.all(promises).then(function(results){
                                     var newOrder = [];
@@ -281,8 +247,6 @@ router.post("/want2wear/shoppingcart/complete" ,middleware .isLoggedIn,  functio
                                             var qty = product.qty;
                                             var price = product.price;
                                             var stock = product.details._id;
-                                            // console.log(stock.productID);
-                                            
                                             
                                                 const purchase = new Purchase({
                                                     PurchaseItem: stock,
@@ -294,28 +258,25 @@ router.post("/want2wear/shoppingcart/complete" ,middleware .isLoggedIn,  functio
                                                 .then(result => {
                                                             
                                                     newOrder.push(result._id);
-                                                 Stock.findByIdAndUpdate(stock, {$inc : {'quantity' : -qty}}, {new: true}).exec().then( Decrese => {
-                                                        // console.log("Decrese successful");
+                                                    Stock.findByIdAndUpdate(stock, {$inc : {'quantity' : -qty}}, {new: true})
+                                                    .exec()
+                                                    .then( Decrese => {})
+                                                    .catch(err => {
+                                                        console.log(err);
                                                     })
-                                                    // console.log(newOrder);
                                                     return newOrder;
-                                                   
-      
                                                 })
                                                 .catch( err => {
                                                     console.log(err);
                                                 });
-                                                
-                       
                                         }));
                                         console.log(Promises);
                                         Promise.all(Promises).then( success => {
-                                            console.log(success[0]);
+                                            // console.log(success[0]);
                                             success[0].map( addPurchase => {
                                                 addnewUser.Purchase.push(addPurchase);
                                             })
-                                           
-                                                
+                            
                                                 addnewUser.save()
                                                 .then( addPurchase =>{
                                                     console.log(addPurchase); 
@@ -340,25 +301,17 @@ router.post("/want2wear/shoppingcart/complete" ,middleware .isLoggedIn,  functio
                             User.findById(currentUser).exec().then( foundUser => {
                                 foundUser.Order.push(addnewUser);
                                 foundUser.save()
-                                .then( UpdateUser => {
-                                    // console.log(UpdateUser);
-                                })
-                                
-                                
+                                .then( UpdateUser => {})
+
                             });
                         });
-                        
-                
-           });
 
-            
+           });
+    
         }
 
     }
 
-    
-
-    
 
 });
 
@@ -388,25 +341,6 @@ router.get("/want2wear/store-management", middleware .isLoggedIn, function(req,r
             }).exec().then( allProduct => {
                 res.render("manage", {allProduct:allProduct});
             })
-            
-    //     Product.find({})
-    //     .populate('stock categories')
-    //     .populate({
-    //     path: 'stock', 
-    //     populate: [{
-    //             path: 'size',
-    //             model: 'Size'
-    //         },{
-    //             path: 'colors',
-    //             model: 'Color'
-    //         }
-    //     ]
-    // }).exec().then( allProduct => {
-    //          res.render("manage", {allProduct:allProduct});
-    //     })
-
-
-       
     }
     
 
@@ -440,15 +374,10 @@ router.put("/want2wear/store-management/update/product/:id", middleware .isLogge
     var price = req.body.price;
     var status = req.body.continue;
     var img = req.body.image;
-    
-    // console.log(id);
-    // console.log(name);
-    // console.log(price);
-    // console.log(status);
-    // console.log(img);
+
     if(img == ""){
         Product.findByIdAndUpdate(id,{ProductName: name,price: price,continue:status}).exec().then( updateProduct => {
-            console.log(updateProduct);
+            // console.log(updateProduct);
             res.redirect('/want2wear/store-management');
         })
         .catch(err =>{
@@ -458,7 +387,7 @@ router.put("/want2wear/store-management/update/product/:id", middleware .isLogge
     }
     else{
         Product.findByIdAndUpdate(id,{ProductName: name,price: price,continue:status,image:img}).exec().then( updateProduct => {
-            console.log(updateProduct);
+            // console.log(updateProduct);
             res.redirect('/want2wear/store-management');
         })
         .catch(err =>{
@@ -466,7 +395,6 @@ router.put("/want2wear/store-management/update/product/:id", middleware .isLogge
         })
     }
     
-
 });
 
 router.get("/want2wear/store-management/edit/stock/:id", middleware .isLoggedIn, function(req,res,next){
@@ -478,26 +406,15 @@ router.get("/want2wear/store-management/edit/stock/:id", middleware .isLoggedIn,
     else{
         
         Stock.findById(id)
-    .populate('size colors productID')
-    .exec()
-    .then(stock =>{
-        console.log(stock);
-        res.render("editstock",{stock:stock});
-    })
-    .catch(err=>{
-        console.log(err);
-    })
-        
-        // Product.findById(id)
-        // .populate('categories')
-        // .exec().then(product =>{
-        //     console.log(product);
-        //     res.render("editproduct" ,{product:product});
-        // })
-        // .catch(err => {
-        //     console.log(err);
-        // })
-
+        .populate('size colors productID')
+        .exec()
+        .then(stock =>{
+            // console.log(stock);
+            res.render("editstock",{stock:stock});
+        })
+        .catch(err=>{
+            console.log(err);
+        })
     }
 
 });
@@ -506,10 +423,6 @@ router.put("/want2wear/store-management/update/stock/:id", middleware .isLoggedI
     var id = req.params.id;
     var qty = req.body.quantity;
     var available = req.body.available;
-
-    console.log(id);
-    console.log(qty);
-    console.log(available);
 
     if(qty == ""){
         Stock.findByIdAndUpdate(id,{available: available})
@@ -543,10 +456,33 @@ router.put("/want2wear/update/details/:id" ,middleware.isLoggedIn, function(req,
     console.log(id);
     console.log(details);
     Product.findByIdAndUpdate(id,{details:details}).exec().then( product => {
-        console.log(product);
+        // console.log(product);
         res.redirect(req.get('referer'));
 
     })
+    
+});
+
+router.get("/want2wear/add/review/:id", middleware.isLoggedIn, function(req,res,next){
+    var username = req.query.user;
+    var productID = req.params.id;
+    var currentUser = req.user;
+    if( username == currentUser.username){
+        Product.findById(productID)
+        .populate('categories')
+        .exec()
+        .then(product =>{
+                // console.log(product);
+                res.render("addreview" ,{product:product,user:username});
+        })
+        .catch(err => {
+                console.log(err);
+        })
+    }
+    else{
+        res.redirect('/index');
+    }
+    
     
 });
 
@@ -554,14 +490,13 @@ router.post("/want2wear/add/review/:id" , middleware.isLoggedIn, function(req,re
     var productID =req.params.id;
     var user = req.query.user;
     var review = req.body.review;
-    console.log(productID);
-    console.log(user);
-    console.log(review);
-    Product.findById(productID).exec().then( product => {
-        console.log(product);
-        Review.create({username: user, reviewsDetail: review}).then( review =>{
-            console.log(review);
-            
+    Product.findById(productID)
+    .exec()
+    .then( product => {
+        // console.log(product);
+        Review.create({username: user, reviewsDetail: review})
+        .then( review =>{
+            // console.log(review);
                 product.review.push(review);
                 product.save()
                 .then( result => {
@@ -570,8 +505,6 @@ router.post("/want2wear/add/review/:id" , middleware.isLoggedIn, function(req,re
                 })
             })
         })
-    
-    
 
 });
 
@@ -581,7 +514,7 @@ router.get('/logout', function(req,res){
     req.flash('success', 'You log out successfully');
     res.redirect('/index');
     
-    console.log(req.session.cart);
+    // console.log(req.session.cart);
     
 });
 

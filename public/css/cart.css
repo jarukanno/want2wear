@@ -1,15 +1,13 @@
-  /*progress bar*/
-
-  .container2 {
-    width: 1000px;
-    padding-top: 200px;
-    padding-bottom: 30px;
-    margin: auto; 
-
+body{
+  width: 100%;
 }
-.progressbar {
-    counter-reset: step;
+
+.container2{
+  width: 100%;
+  padding: 100px;
+  margin: auto; 
 }
+
 .progressbar .aa {
     list-style-type: none;
     width: 30%;
@@ -49,11 +47,24 @@
 }
   /*-*/
   
+  
+  .btn-circle {
+    width: 50px;
+  height: 50px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 25px;
+  }
+
+  .btn-circle .fa {
+    font-size: 10px;
+  }
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,600);
 
 button {
-  background-color: #666;
+  /* background-color: #666; */
   color: #fff;
 }
 
@@ -67,6 +78,7 @@ img,
 .basket-labels,
 .basket-product {
   width: 100%;
+  margin-bottom: 2%;
 }
 
 input,
@@ -100,7 +112,7 @@ main {
   margin: 0 auto;
   overflow: hidden;
   padding: 5rem 0;
-  width: 1400px;
+  width: 100%;
 }
 
 .basket,
@@ -113,20 +125,20 @@ aside {
 
 .basket {
   width: 70%;
+  padding-left: 10%;
 }
 
 .basket-labels li{
     font-size: 20px;
     font-weight: bolder;
-    font-family:'Pacifico', cursive ;
-    color: #a19e9f;
+    font-family:'Source Serif Pro', serif;
+    color: #0c2431;
     
 }
 
-
  .basket-labels {
-  border-top: 2px solid #ccc;
-  border-bottom: 2px solid #ccc;
+  border-top: 1px solid #0c2431;
+  border-bottom: 1px solid #0c2431;
   
 } 
 .product-details{
@@ -134,12 +146,12 @@ aside {
 }
 ul {
   list-style: none;
-  margin: -5;
+  
   padding: 0;
 }
 
 li {
-  color: #111;
+  color: #0c2431;
   display: inline-block;
   padding: 0.625rem 0;
 }
@@ -166,14 +178,14 @@ li.subtotal:before {
 .remove {
   bottom: 1.125rem;
   float: right;
-  position: absolute;
+ 
   right: 0;
   text-align: right;
   width: 45%;
 }
 
 .remove button {
-  background-color: #b69b7d;
+ 
   color: white;
   float: none;
   
@@ -183,6 +195,8 @@ li.subtotal:before {
   border-bottom: 1px solid #ccc;
   padding: 1rem 0;
   position: relative;
+  color:#0c2431;
+  
 }
 
 .product-image {
@@ -224,19 +238,20 @@ aside {
 }
 
 .summary {
-  background-color: #b69b7d;
-  border: 2px solid #aaa;
-  padding: 1rem;
+  background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
  
+  padding: 1rem;
+ font-family: 'IBM Plex Sans', sans-serif;
   width: 250px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  font-family: 'Comfortaa', cursive;
 }
 
 .summary-total-items {
-font-weight: bold;
-  color: wheat;
+  font-weight: bold;
+  color: white;
   font-size: 18px;
   text-align: center;
 }
@@ -287,7 +302,7 @@ font-weight: bold;
 
 .total-title {
   font-weight: bold;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 }
 
 .summary-checkout {
@@ -305,9 +320,9 @@ font-weight: bold;
 }
 
 .summary-delivery-selection {
-    color: black;
+  color: #0c2431;
   font-weight: bold;
-  background-color: wheat;
+  background-color: white;
   border: 1px solid #aaa;
   border-radius: 4px;
   display: block;
@@ -315,35 +330,93 @@ font-weight: bold;
   height: 34px;
   width: 100%;
 }
+.empty{
+  margin-bottom: 40%;
+}
+.empty div{
+  margin-bottom: 10;
+}
 
-@media screen and (max-width: 640px) {
-  aside,
-  .basket,
-  .summary,
-  .item,
-  .remove {
+pre{
+        color: #0c2431;
+        margin-top: unset;
+        
+        position: absolute;
+        margin-left: 30%;
+        font-family: 'DM Serif Display', serif;
+        font-size: 50px; 
+}
+
+/* responsive*/
+@media only screen and (max-width: 1024px ){
+  .progressbar{
+    width: 100%;
+  }
+  .empty{
+    margin-bottom: 60%;
+  }
+
+  pre{
+    color: #0c2431;
+    margin-top: unset;
+    position: absolute;
+    margin-left: 30%;
+    font-family: 'DM Serif Display', serif;
+    font-size: 50px; 
+  }
+}
+@media only screen and (max-width: 768px) {
+  body{
+    width: 100%;
+  }
+  .container2{
+    width: 100%;
+  }
+  .active2{
+      display: none;
+  }
+  .bket i {
+      padding-top: 50px;
+      font-size: 120px;
+     
+  }
+  
+
+  main{
     width: 100%;
     
   }
+  
+  
+  .progressbar .aa{
+      font-size: 50px;
+      text-align: center;
+  }
+
+  .progressbar .aa:after{
+      display: none;
+  }
+ 
+  aside {
+    padding-left: 10%;
+    width: 100%;
+    
+  }
+
+  .bket  {
+    padding-left: 200px;
+    font-size: 100px;
+  }
+  .basket {
+    width:95%;
+    padding-bottom: 10%;
+  }
+  
   .basket-labels {
-    display: none;
+    width: 100%;
   }
-  .basket-module {
-    margin-bottom: 1rem;
-  }
-  .item {
-    margin-bottom: 1rem;
-  }
-  .product-image {
-    width: 40%;
-  }
-  .product-details {
-    width: 60%;
-  }
-  .price,
-  .subtotal {
-    width: 33%;
-  }
+ 
+ 
   .quantity {
     text-align: center;
     width: 34%;
@@ -353,33 +426,150 @@ font-weight: bold;
   }
   .remove {
     bottom: 0;
-    text-align: left;
-    margin-top: 0.75rem;
+    text-align: right;
+    margin-top: 5rem;
     position: relative;
   }
   .remove button {
     padding: 0;
   }
-  .summary {
-    margin-top: 1.25rem;
-    position: relative;
+  .summary{
+    width: 600px;
+    height: 700px;
+    font-size: 25px;
+    
+  } 
+  .summary-delivery {    
+    font-size: 80px;
+    margin: 50px 0px 200px;
+  }
+  
+  .summary-total-items {
+      font-size: 50px;
+    }
+  .summary-checkout button{
+     font-size: 40px;
+     height: 100px;
+  }
+  .summary-delivery-selection {
+   
+  font-size: 20px;
+  height: 60px;
+  width: 100%;
+  }
+  select option {
+    background-image:none;
+    padding: 5px;
+  }
+  button .checkout-cta {
+    font-size:20px;
+  }
+  pre {
+    margin-top: 15%;
+    position: absolute;
+    margin-left: 30%;
+    font-family: 'DM Serif Display', serif;
+    font-size: 40px;
   }
 }
-
-@media screen and (min-width: 641px) and (max-width: 960px) {
-  aside {
-    padding: 0 1rem 0 0;
-  }
-  .summary {
-    width: 28%;
-  }
-}
-
-@media screen and (max-width: 960px) {
-  main {
+@media only screen and (max-width: 375px) {
+  body{
     width: 100%;
   }
-  .product-details {
-    padding: 0 1rem;
+  .container2{
+    width: 100%;
+  }
+  .active2{
+      display: none;
+  }
+  .bket i {
+      padding-top: 30px;
+      font-size: 80px;
+     
+  }
+  pre {
+    margin-top: 10%;
+    
+    position: absolute;
+    margin-left: 20%;
+    font-family: 'DM Serif Display', serif;
+    font-size: 30px;
+  }
+
+  main{
+    width: 100%;
+    
+  }
+  .progressbar .aa{
+      font-size: 40px;
+      text-align: center;
+  }
+
+  .progressbar .aa:after{
+      display: none;
+  }
+ 
+  aside {
+    padding-left: 10%;
+    width: 100%;
+    
+  }
+  .bket  {
+    padding-left: 50px;
+    font-size: 100px;
+  }
+  .basket {
+    width:95%;
+    padding-bottom: 10%;
+  }
+  
+  .basket-labels {
+    width: 100%;
+  }
+ 
+ 
+  .quantity {
+    text-align: center;
+    width: 34%;
+  }
+  .quantity-field {
+    float: none;
+  }
+  .remove {
+    bottom: 0;
+    text-align: right;
+    margin-top: 5rem;
+    position: relative;
+  }
+  .remove button {
+    padding: 0;
+  }
+  .summary{
+    width: 350px;
+    height: 500px;
+    font-size: 25px;
+    
+  } 
+  .summary-delivery {    
+    font-size: 50px;
+    margin: 30px 0px 100px;
+  }
+  
+  .summary-total-items {
+      font-size: 20px;
+    }
+  .summary-checkout button{
+     font-size: 20px;
+     height: 60px;
+  }
+  .summary-delivery-selection {
+   
+  font-size: 20px;
+  height: 60px;
+  width: 100%;
+  }
+  select option {
+    background-image:none;
+    padding: 5px;
   }
 }

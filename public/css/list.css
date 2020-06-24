@@ -2,27 +2,29 @@
     color: orange;
     }
     .container{
-        width:100%;
+        /* max-width:1000px; */
         margin-top: 15%;
-
+        position:relative;
         font-family: sans-serif;
         letter-spacing: 1px;
     }
     .container h2{
-        border-left: 6px solid gray ;
-        background-color: lightgrey;
-        font-family: 'Pacifico', cursive;
-        background: #b69b7d;
-        color:white;
-        width: 230px;;
+        border-left: 6px solid #b69b7d;
+    
+        font-family: 'Cedarville Cursive', cursive;
+        background: #0c2431;
+        color: white;
+        width: 230px;
         font-size: 38px;
         padding: 0px;
+        padding-left: 15px;
+        padding-top: 5px;
         height: 50px;
     }
     .container h2::after{
         
         content: ' ';
-        border-top:47px solid #b69b7d  ;
+        /* border-top:47px solid #b69b7d  ; */
         border-right: 55px solid transparent;
         position: relative;
         left: 28.0px;
@@ -84,3 +86,6 @@
         color: blue;
 
     }
+
+    /*--------------------------------*/
+    

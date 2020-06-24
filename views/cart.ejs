@@ -1,6 +1,6 @@
 <%- include("partials/header") %>
 
-    <link rel='stylesheet' type='text/css' href='/css/cart.css' />
+    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -11,15 +11,15 @@
     <meta charset="utf-8">
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-
+      <link rel='stylesheet' type='text/css' href='/css/cart.css' />
     <div class="container2">
-            <ul class="progressbar">
-                <li class="aa"><i class="fa fa-shopping-cart" aria-hidden="true" ></i><br>CART<br></li>
+            <ul class="progressbar" style="width: 100%;">
+                <li class="aa bket"><i class="fa fa-shopping-cart" aria-hidden="true" ></i><br>CART<br></li>
                 <li class="active2 aa"><i class="fa fa-credit-card"></i><br>payment<br></li>
                 <li class="active2 aa"><i class="fa fa-check"></i><br>order<br>complete</li>
         
             </ul> 
-        </div>
+    </div>
         <br>
     <% if (products != null) { %>
         
@@ -85,19 +85,19 @@
                 <div class="remove">
                   <form id="modifyCart" action="/want2wear/shoppingcart/update/<%= product.details._id %>?_method=PUT" method="POST">
                     <!-- <input type="hidden" value="<%= product.details._id %>"> -->
-                          <button type="submit" value="add"  >   +   </button>
+                          <button type="submit" class="btn-circle" id="addbtn" style="background-color: #18B87A; border-color: transparent;"><i class="fa fa-plus" aria-hidden="true"></i> </button>
                         
                   </form><br>
                   <form id="modifyCart" action="/want2wear/shoppingcart/update/<%= product.details._id %>?_method=DELETE" method="POST">
                     
-                          <button type="submit"  value="decrese"  >   -   </button>
+                          <button type="submit"  class="btn-circle"  id="decresebtn" style="background-color:  #5386C5; border-color: transparent;"> <i class="fa fa-minus" aria-hidden="true"></i></button>
                         
                   </form>
                         
                         <br>
                         <form id="modifyCart" action="/want2wear/shoppingcart/delete/<%= product.details._id %>?_method=DELETE" method="POST">
                           
-                                <button type="submit"  value="delete"  >  Remove  </button>
+                                <button type="submit"  class="btn-circle" id="removebtn" style="background-color: darkred; border-color: transparent;"> <i class="fa fa-trash" aria-hidden="true"></i> </button>
                               
                         </form>
                           
@@ -110,12 +110,13 @@
               
               
              <% }); %>   
+             <br>
              <form  action="/want2wear/shoppingcart/clear?_method=DELETE" method="POST">
                           
-              <button id="modifyCart" type="submit"  value="delete"  >  Clear  </button>
+              <button id="modifyCart" type="submit"  value="delete" id="clearbtn" style="background-color: darkred; border-color: transparent; width: 100px;border-radius: 24px;">  Clear  </button>
             
           </form>
-             <a href="/want2wear/shoppingcart/clear" >Clear</a>
+             
             </div>
             
             
@@ -130,7 +131,7 @@
                   
                 </div>
                 <div class="summary-delivery">
-                  <select name="shipment" class="summary-delivery-selection" required>
+                  <select style="border-radius: 24px;" name="shipment" class="summary-delivery-selection" required>
                       <option value="0" selected disabled>Select Delivery Method</option>
                      <option value="register">REG</option>
                      <option value="ems">EMS</option>
@@ -143,7 +144,7 @@
                   <div class="total-value final-value" id="basket-total"> <%= totalPrice %></div>
                 </div>
                 <div class="summary-checkout">
-                  <button type="submit" class="checkout-cta">Go to Secure Checkout</button>
+                  <button type="submit" style="border-radius: 24px; color:#0c2431; border-color:transparent;" class="checkout-cta">Go to Secure Checkout</button>
                 </div>
               </div>
             </aside>
@@ -154,8 +155,9 @@
 
    else { %>
     <br>
-    <h2>Your cart is empty</h2>
-
+    
+      <div class="empty" style="text-align: center;"><pre>Your cart is empty</pre></div>
+    
 
    <% } %>
   
