@@ -7,10 +7,6 @@ const express = require('express'),
       Size = require('../models/size'),
       Product = require('../models/product'),
       Cart = require('../models/cart'),
-<<<<<<< HEAD
-      
-=======
->>>>>>> eb49275a97badbde6ab9b397af1fbf65af7a7ef8
       Purchase = require('../models/purchase'),
       Order = require('../models/order'),
       Review = require('../models/reviews'),
