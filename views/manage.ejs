@@ -7,21 +7,30 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<link rel='stylesheet' type='text/css' href='/css/manage.css' />
 
-<div class="container">
+<link rel='stylesheet' type='text/css' href='/css/manage.css' />
+<!-- <script src="/js/remove.js" defer></script> -->
+<style>
+  br {
+    display: none;
+  }
+</style>
+
+<div class="container" onload="remove()">
     
- 
+  <div class="pro">
     <table class="table table-striped">
-      <thead>
+      <!-- <thead> -->
+ 
       <h2>Product & Inventory Management</h2>
         <tr>
           <th>ACTION</th>
           <th>PRODUCT NAME</th>
           <th>PRODUCT IMAGES</th>
         </tr>
+      
         <% allProduct.map(function(category){ %>
-            <% category.productID.map(function(product){ %>
+            <% category.productID.map( (product)=>{ %>
          <form id="manage" >
         <tr><% product.stock.map((stock) => { %>
           <td>
@@ -38,7 +47,7 @@
                 <td><%= product.ProductName %>
                 <% stock.size.map((size) =>{ %>
                     
-                        <br>
+                        
                    <span>Size : <%= size.sizeName %> , </span> 
 
                 <% }); 
@@ -48,22 +57,20 @@
                 <% }); %>
                 <span>Available : <%= stock.quantity %></span></td>
                 <td><img src="<%= product.image %>" alt="Placholder Image 2" class="product-frame">    </td>   
-                   </tr> <br>
+                   </tr> 
             
            <% }); %>
             <% }); %>
+            
         
           
        
-        <% }); %>
-      </thead>
-      <tbody>
-        
-        
-        
-      </tbody>
+        <% }); %></div>
+      <!-- </thead> -->
+  
     </table>
     
   </div>
 
+  
 <%- include("partials/footer") %>
