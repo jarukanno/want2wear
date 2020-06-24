@@ -23,7 +23,7 @@ const   express = require("express");
         ObjectId = require('mongoose').Types.ObjectId;
           
 
-mongoose.connect("mongodb://localhost:27017/wanttowear", {useNewUrlParser: true,useUnifiedTopology: true},function(err, db) {
+mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true,useUnifiedTopology: true},function(err, db) {
   if (err) throw err;
   else {console.log("Database created!");}
 
@@ -50,7 +50,7 @@ app.use(require('express-session')({
     unset: 'destroy'  
 }));
 app.use(flash());
-app.use(passport.initialize());
+app.use(passport.initialize());install
 
 app.use(passport.session());
 
