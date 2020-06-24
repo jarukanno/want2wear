@@ -123,13 +123,15 @@ router.get("/want2wear/shoppingcart", middleware .isLoggedIn, function(req,res,n
             var data = cart.generateArray();
             let promises = await (data.map( function(stock){
                    return Stock.findById(stock.item.options).populate('productID size colors').exec().then(function(details){
-                    
+
+                                            // console.log(details);
                                             newProduct.push({details:details,qty:stock.qty, price:stock.price });   
                                             return newProduct;
                             });   
             }));
+            // console.log(promises);
             Promise.all(promises).then(function(results){
-            
+                // console.log(results);
                 res.render("cart", {products: results[0], totalPrice: cart.totalPrice, totalQty: cart.totalQty , totalProduct: cart.totalProduct, user: user}); 
             })  
         }

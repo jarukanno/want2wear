@@ -76,12 +76,17 @@
   font-family: 'Red Hat Text', sans-serif;
 }
 
-#notifications-badge {
-  background-color: red;
-  position: absolute;
-  top: -3px;
-  right: -3px;
-  border-radius: 100%;
+u .badge{
+  
+
+  
+    font-size: 16px;
+    
+    position: relative;
+    color: #0c2431;
+    
+    border-color: transparent;
+    font-family: 'Kanit', sans-serif;
 }
 
 
@@ -648,23 +653,18 @@ padding: 0px 0px;
 }
 
 .badge {
-  background-color: darkred;
+  /* background-color: darkred; */
   border-color: transparent;
   width: 20px;
   height: 18px;
-  
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.33;
   border-radius: 25px;
   top: -8px;
-  left: -10px;
+  left: -1px;
   position: relative;
-  color: white;
+  color: darkred;
   font-family: inherit;
   border-color: transparent;
   font-family: 'Kanit', sans-serif;
-}
-.badge u{
-  border-radius: 25px;
-  background-color: #b69b7d;
 }

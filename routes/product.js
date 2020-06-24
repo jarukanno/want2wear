@@ -298,7 +298,7 @@ router.post("/want2wear/add-to-cart", function(req,res,next){
            console.log(err);
        }
        else{
-          
+           console.log(stock);
            let product = stock.productID;
            let Available = stock.quantity;
            
@@ -307,13 +307,15 @@ router.post("/want2wear/add-to-cart", function(req,res,next){
                    console.log(err);
                }
                else{
+               
                    let price = findPrice.price;
                    let productID = findPrice._id;
                 
                    let addOne = {options:options,price:price,qty:quantity,available: Available};
                    cart.add(addOne,options);
                    req.session.cart = cart;
-                //    console.log(req.session.cart)
+                //    delete req.session.cart;
+                
                    res.redirect(req.get('referer'));
                }
            });
