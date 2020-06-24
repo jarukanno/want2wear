@@ -33,7 +33,7 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://git.heroku.com/want2wear.git"
+    "url": "https://git.heroku.com/want2wear.git"
   },
   "bugs": {
     "url": "https://github.com/jarukanno/want2wear/issues"
