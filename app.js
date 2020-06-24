@@ -21,9 +21,10 @@ const   express = require("express");
         userRoute = require('./routes/user');
         seedDB = require("./seeds");
         ObjectId = require('mongoose').Types.ObjectId;
+        port = process.env.PORT || 3000;
           
 
-mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true,useUnifiedTopology: true},function(err, db) {
+mongoose.connect("mongodb://localhost:27017/wanttowear", {useNewUrlParser: true,useUnifiedTopology: true},function(err, db) {
   if (err) throw err;
   else {console.log("Database created!");}
 
@@ -50,7 +51,7 @@ app.use(require('express-session')({
     unset: 'destroy'  
 }));
 app.use(flash());
-app.use(passport.initialize());install
+app.use(passport.initialize());
 
 app.use(passport.session());
 
@@ -80,6 +81,6 @@ app.use('https://want2wear.herokuapp.com/', productRoute);
 
 
 
-app.listen(3000,function (req,res){
+app.listen(port,function (req,res){
 	console.log("Server has started");
 });
