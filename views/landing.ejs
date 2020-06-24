@@ -4,6 +4,62 @@
   <h1 style="font-family: 'DM Serif Display', serif; text-align: center;">This is for Administrator Management page</h1>
   <% } %>
 <link rel='stylesheet' type='text/css' href='/css/card.css' />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="/js/grid.js" defer></script>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .header {
+    text-align: center;
+    padding: 32px;
+  }
+  
+  .row {
+    display: -ms-flexbox; /* IE 10 */
+    display: flex;
+    -ms-flex-wrap: wrap; /* IE 10 */
+    flex-wrap: wrap;
+    padding: 0 4px;
+  }
+  
+  /* Create two equal columns that sits next to each other */
+  .column {
+    -ms-flex: 50%; /* IE 10 */
+    flex: 50%;
+    padding: 0 4px;
+  }
+  
+  .column img {
+    margin-top: 8px;
+    vertical-align: middle;
+  }
+  
+  /* Style the buttons */
+  .btn {
+    border: none;
+    outline: none;
+    padding: 10px 16px;
+    background-color: #f1f1f1;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  
+  .btn:hover {
+    background-color: #ddd;
+  }
+  
+  .btn.active {
+    background-color: #666;
+    color: white;
+  }
+  </style>
 
 <div class="slideshow-container">
 
@@ -40,38 +96,46 @@
     <br>
 
 
-  <div class="bg">
-    <h1>Responsive Image Grid</h1>
-    <p>Resize the browser window to see the responsive effect.</p>
-  </div>
+  
   
   <!-- Photo Grid -->
-  <div class="row"> 
-    <div class="column">
-      <img src="https://i0.codibook.net/files/thumb/big/1977081060627/90ec67d512e5184a/191393642.jpg" style="width:100%; height: 100%;">
-      
-      
-      
-    </div>
-    <div class="column">
-      <img src="https://i0.codibook.net/files/thumb/big/1977062413850/9e3db518f1c3baa1/1475168732.jpg" style="width:100%">
-      <img src="https://i0.codibook.net/files/thumb/big/1977081060627/90ec67d512e5184a/191393642.jpg" style="width:100%">
-      
-      
-    </div>
-    <div class="column">
-      <img src="https://i0.codibook.net/files/thumb/big/1977062413850/9e3db518f1c3baa1/1475168732.jpg" style="width:100%">
-      <img src="https://i0.codibook.net/files/thumb/big/1977081060627/90ec67d512e5184a/191393642.jpg" style="width:100%">
-      
-      
-    </div>
-    <div class="column">
-      <img src="https://i0.codibook.net/files/thumb/big/1977062413850/9e3db518f1c3baa1/1475168732.jpg" style="width:100%">
-      <img src="https://i0.codibook.net/files/thumb/big/1977081060627/90ec67d512e5184a/191393642.jpg" style="width:100%">
-      
-      
-    </div>
-  
-</div>   
+
+
+<!-- Photo Grid -->
+<div class="row"> 
+  <div class="column">
+    <img src="https://i0.codibook.net/files/thumb/big/1977090539024/73392dc77db02047/1350342895.jpg" style="width:100%">
+    <img src="https://i0.codibook.net/files/thumb/big/1977082046210/fddc2757f7e72d26/1984584211.jpg" style="width:100%">
+    <img src="https://i0.codibook.net/files/thumb/big/1977091878605/15a1a3b0f1992b23/1966408170.jpg" style="width:100%">
+    
+    
+  </div>
+  <div class="column">
+    <img src="https://i0.codibook.net/files/1976123011929/b5cebf4cfb72/1083994816.jpg" style="width:100%">
+    
+    <img src="https://i0.codibook.net/files/thumb/big/1977091878620/466b5ea64fae8a9e/2059433410.jpg" style="width:100%">
+    <img src="https://i0.codibook.net/files/thumb/big/1975061317894/87ec2aea963a0b/1112577846.jpg" style="width:100%">
+    
+    
+  </div>  
+  <div class="column">
+    <img src="https://i0.codibook.net/files/1977090335431/5a5a00a318c1f696/299652866.jpg" style="width:100%">
+    <img src="https://i0.codibook.net/files/1975112018241/3bf87abb2ff115ae/1358587767.jpg" style="width:100%">
+    <img src="https://i0.codibook.net/files/1977091775003/00094bf5caf3cc15/992078050.jpg" style="width:100%">
+   
+    
+  </div>
+  <div class="column">
+    <img src="https://i0.codibook.net/files/thumb/big/1977090820643/61b751359a665b0f/396740432.jpg" style="width:100%">
+    <img src="https://i0.codibook.net/files/1977091522928/75bb15c84cdce9ec/209547239.jpg" style="width:100%">
+    
+    <img src="https://i0.codibook.net/files/1977090131806/d8edce9561fbbece/1698188157.jpg" style="width:100%">
+    
+  </div>
+</div>
+
+
+</body>
+</html>
 
 <%- include("partials/footer") %>

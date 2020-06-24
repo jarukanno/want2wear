@@ -448,7 +448,7 @@ pre{
       font-size: 50px;
     }
   .summary-checkout button{
-     font-size: 40px;
+     font-size: 30px;
      height: 100px;
   }
   .summary-delivery-selection {
@@ -545,7 +545,7 @@ pre{
     padding: 0;
   }
   .summary{
-    width: 350px;
+    width: 320px;
     height: 500px;
     font-size: 25px;
     
@@ -559,7 +559,7 @@ pre{
       font-size: 20px;
     }
   .summary-checkout button{
-     font-size: 20px;
+     font-size: 18px;
      height: 60px;
   }
   .summary-delivery-selection {

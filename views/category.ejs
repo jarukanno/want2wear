@@ -18,10 +18,11 @@
         <!--01-->
            
 
-            
+            <% Product.productID.map(function(product){ %>
+                <% if (product.continue) { %>
             <div class="col-md-3 col-sm-1"> 
-                <% Product.productID.map(function(product){ %>
-                        <% if (product.continue) { %>
+                
+                        
                 <div class="img-thumbnail">
                     <div class="product-top">
                         
