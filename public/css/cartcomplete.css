@@ -1,5 +1,5 @@
 .container2 {
-    width: 1000px;
+    width: 100%;
     padding-top: 100px;
     padding-bottom: 30px;
     margin: auto; 
@@ -105,11 +105,11 @@ hr.new1 {
 } */
 @media only screen and (max-width: 1024px ){
   .container2 {
-    width: 140%;
+    width: 100%;
     
   }
    hr.new1 {
-    width: 800px;  
+    width: 80%;  
   }
   .progressbar .aa {
     width: 20%;
@@ -126,15 +126,15 @@ hr.new1 {
     }
     .bket i {
         padding-top: 50px;
-        font-size: 250px; 
+        font-size: 120px; 
 
     }
     .bket  {
         
-        padding-left: 250px;  
+        padding-left: 15%;  
     }
     .progressbar .aa{
-        font-size: 80px;
+        font-size: 40px;
         text-align: center;
     }
     .progressbar .aa:after{
@@ -144,13 +144,39 @@ hr.new1 {
         
         border-top: 10px solid rgba(68, 48, 48, 0.301) ;
         margin-top: 650px;
-        width: 800px;
+        width: 80%;
           
     }
     .container2 h2{
         margin-top: 80px;
-        font-size: 70px;         
+        font-size: 50px;         
+    }
+    .container2 {
+        width: 100%;
+        padding-top: 0px; 
+        padding-bottom: 30px;
+        margin: auto;
     }
     
    
   }    
+
+
+
+  @media only screen and (max-device-width: 375px){
+
+  .container2 {
+    width: 100%;
+    padding-top: 0%; 
+    padding-bottom: 0%; 
+    margin: auto;
+}
+.container2 h2 {
+    margin-top: 80px;
+    font-size: 50px;
+}
+.progressbar .aa {
+    font-size: 60px;
+    text-align: center;
+}
+}

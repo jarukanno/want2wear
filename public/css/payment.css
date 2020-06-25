@@ -240,7 +240,7 @@ form{
 /* responsive*/
 @media only screen and (max-width: 1024px ){
   .container2 {
-    width: 140%;
+    width: 100%;
     
 }
 }
@@ -394,31 +394,31 @@ aside {
     width: 90%;
     
   }
+ 
   aside {
     padding-left: 15%;
     width: 100%;
     
   }
-  .summary{
-    
-    width: 700px;
-    height: 700px;
-    font-size: 35px;
-  }
+  .summary {
+    width: 300px;
+    height: 500px;
+    font-size: 15px;
+}
   .bket  {
     padding-left: 200px;
   }  
   .bket i {
-    margin-top: -80px;
-    font-size: 250px;
+    margin-top: -150px;
+    font-size: 100px;
   }
   .bket  {
-    padding-left: 150px;
+    padding-left: 120px;
     margin-top: 20px;
     font-size: 100px;
   }
   .progressbar .aa{
-    font-size: 70px;
+    font-size: 40px;
   }
   .basket-labels li{
     font-size: 50px;
@@ -433,17 +433,35 @@ aside {
     display: none;
   }
   .summary-delivery {    
-    font-size: 40px;
+    font-size: 15px;
     margin: 50px 0px 200px;
   }
   
   .summary-total-items {
-      font-size: 50px;
+      font-size: 20px;
     }
   .summary-checkout button{
-     font-size: 40px;
-     height: 100px;
+     font-size: 20px;
+     height: 60px;
   }
+  .basket-labels li {
+    font-size: 27px;
+  }
+  .qrcode input {
+    zoom: 2.5;
+  }
+  .qrcode label {
+    font-size: 30px;
+}
+img {
+  vertical-align: middle;
+  border-style: none;
+  width: 70%;
+}
+aside {
+    padding-left: 5%;
+    width: 100%;
+}
 }
 
 
